@@ -8,7 +8,8 @@ namespace AOE.Service
 {
     public enum SortOrder
     {
-        Ascending = 0,
-        Descending = 1
+        None = 0,
+        Ascending = 1,
+        Descending = 2
     }
 }

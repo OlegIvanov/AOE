@@ -8,7 +8,8 @@ namespace AOE.Service
 {
     public enum SortColumn
     {
-        FullName = 0,
-        Salary = 1
+        None = 0,
+        FullName = 1,
+        Salary = 2
     }
 }
