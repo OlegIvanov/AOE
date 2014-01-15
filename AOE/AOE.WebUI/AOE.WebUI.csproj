@@ -77,6 +77,8 @@
     <Compile Include="EmployeeList.ascx.designer.cs">
       <DependentUpon>EmployeeList.ascx</DependentUpon>
     </Compile>
+    <Compile Include="EmployeeListConfig.cs" />
+    <Compile Include="EmployeeListDataSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
