@@ -1,27 +1,100 @@
-﻿CREATE TABLE Jobs
-(
-	JobId INT PRIMARY KEY,
-	JobName NVARCHAR(100) NOT NULL
-)
+﻿USE master
+GO
+IF DB_ID('Employees') IS NOT NULL
+	DROP DATABASE Employees
 
+CREATE DATABASE Employees
+
+USE Employees
+GO
+
+CREATE TABLE Jobs
+(
+	JobId		INT PRIMARY KEY,
+	JobName		NVARCHAR(100) NOT NULL
+)
 CREATE TABLE Employees
 (
-	EmployeeId INT PRIMARY KEY,
-	JobId INT NOT NULL,
-	FirstName NVARCHAR(100) NOT NULL,
-	LastName NVARCHAR(100) NOT NULL,
-	Salary FLOAT
+	EmployeeId	INT PRIMARY KEY,
+	JobId		INT NOT NULL,
+	FirstName	NVARCHAR(100) NOT NULL,
+	LastName	NVARCHAR(100) NOT NULL,
+	Salary		FLOAT NOT NULL
 )
 
-ALTER TABLE Employees
-ADD CONSTRAINT FK_JobId
-FOREIGN KEY (JobId)
-REFERENCES Jobs(JobId)
+ALTER TABLE
+	Employees
+ADD CONSTRAINT 
+	FK_JobId
+FOREIGN KEY 
+	(JobId)
+REFERENCES 
+	Jobs(JobId)
 ON UPDATE CASCADE
 ON DELETE CASCADE
 
+GO
+CREATE PROCEDURE GetEmployeeList
+(
+	@JobId		INT,
+	@SortExp	NVARCHAR(50),
+	@PageIndex	INT,
+	@PageSize	INT
+)
+AS
+	SELECT * FROM
+	(
+		SELECT 
+				Employees.FirstName + SPACE(1) + Employees.LastName AS FullName,
+				Employees.Salary,
+				ROW_NUMBER() OVER (ORDER BY 
+					CASE WHEN @SortExp = 'FullName_Ascending'
+						THEN FullName
+					END ASC,
+					CASE WHEN @SortExp = 'FullName_Descending'
+						THEN FullName
+					END DESC,
+					CASE WHEN @SortExp = 'Salary_Ascending'
+						THEN Salary
+					END ASC,
+					CASE WHEN @SortExp = 'Salary_Descending'
+						THEN Salary
+					END ASC) AS RowNumber
+		FROM
+				Employees
+		WHERE
+				Employees.JobId = @JobId
+	) AS Temp
+	WHERE Temp.RowNumber BETWEEN (@PageIndex * @PageSize + 1) AND ((@PageIndex + 1) * @PageSize)
 
 
+/*
+CREATE PROCEDURE GetTagsByUserName
+(
+	@UserName nvarchar(20),
+	@PageIndex int,
+	@PageSize int
+)
+AS
+	SET NOCOUNT ON
+	DECLARE	@UserID int
+	EXECUTE GetUserIDByUserName @UserName, @UserID OUTPUT
+	SELECT * FROM
+	(
+		SELECT
+			Tags.TagID,
+			Tags.TagTitle,
+			ROW_NUMBER() OVER (ORDER BY TagTitle ASC) AS RowNumber
+		FROM
+			Tags
+		WHERE
+			Tags.UserID = @UserID
+	) AS TagsBuffer
+	WHERE
+		TagsBuffer.RowNumber BETWEEN (@PageIndex * @PageSize + 1) AND ((@PageIndex + 1) * @PageSize)
+	ORDER BY
+		TagTitle ASC
+		*/
 
 /*
 DROP PROCEDURE GetUserIDByUserName

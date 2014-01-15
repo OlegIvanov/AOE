@@ -24,10 +24,14 @@ namespace AOE.Repository
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 SqlCommand command = new SqlCommand("GetEmployeeList", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@JobId", SqlDbType.Int).Value = employeeListRequest.JobId;
+
                 connection.Open();
                 IDataReader reader = ExecuteReader(command);
             }
 
+            //SqlDbType.
             /*
             using (SqlConnection cn = new SqlConnection(this.ConnectionString))
             {
