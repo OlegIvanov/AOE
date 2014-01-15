@@ -97,3 +97,8 @@ SELECT * FROM
 WHERE
 	RowNumber BETWEEN (@PageIndex * @PageSize + 1) AND ((@PageIndex + 1) * @PageSize)
 SET @EmployeeVirtualCount = (SELECT COUNT(*) FROM Employees WHERE Employees.JobId = @JobId)
+
+GO
+CREATE PROCEDURE GetJobList
+AS
+SELECT * FROM Jobs

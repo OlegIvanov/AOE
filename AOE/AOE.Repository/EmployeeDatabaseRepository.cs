@@ -35,15 +35,41 @@ namespace AOE.Repository
                 IList<Employee> employees = new List<Employee>();
                 while (reader.Read())
                 {
-                    employees.Add(new Employee() {
+                    employees.Add(new Employee() 
+                    {
                         Id = (int)reader["EmployeeId"],
                         FullName = (string)reader["FullName"],
                         Salary = (double)reader["Salary"]
                     });
                 }
-                return new EmployeeListResponse() { 
+                return new EmployeeListResponse() 
+                { 
                     Employees = employees,
                     EmployeeVirtualCount = (int)command.Parameters["EmployeeVirtualCount"].Value
+                };
+            }
+        }
+
+        public JobListResponse GetJobList()
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                SqlCommand command = new SqlCommand("GetJobList");
+                command.CommandType = CommandType.StoredProcedure;
+                connection.Open();
+                IDataReader reader = ExecuteReader(command);
+                IList<Job> jobs = new List<Job>();
+                while (reader.Read())
+                {
+                    jobs.Add(new Job() 
+                    { 
+                        Id = (int)reader["JobId"],
+                        Name = (string)reader["JobName"]
+                    });
+                }
+                return new JobListResponse()
+                {
+                    Jobs = jobs
                 };
             }
         }
