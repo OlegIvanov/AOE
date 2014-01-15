@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOE.WebUI", "AOE.WebUI\AOE.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOE.Service", "AOE.Service\AOE.Service.csproj", "{9300A212-8F95-49C4-873A-7D4C7668675C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOE.Repository", "AOE.Repository\AOE.Repository.csproj", "{2D44D663-AF7B-40EC-AFDE-57C95E2B7740}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{9300A212-8F95-49C4-873A-7D4C7668675C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9300A212-8F95-49C4-873A-7D4C7668675C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9300A212-8F95-49C4-873A-7D4C7668675C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D44D663-AF7B-40EC-AFDE-57C95E2B7740}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D44D663-AF7B-40EC-AFDE-57C95E2B7740}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D44D663-AF7B-40EC-AFDE-57C95E2B7740}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D44D663-AF7B-40EC-AFDE-57C95E2B7740}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
