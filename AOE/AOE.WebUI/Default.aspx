@@ -10,7 +10,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <uwc:EmployeeList runat="server" />
+        <uwc:EmployeeList runat="server" XmlConfigFile="EmployeeList.xml" />
     </div>
     </form>
 </body>
