@@ -13,6 +13,7 @@ CREATE TABLE Jobs
 	JobId		INT PRIMARY KEY,
 	JobName		NVARCHAR(100) NOT NULL
 )
+
 CREATE TABLE Employees
 (
 	EmployeeId	INT PRIMARY KEY,
@@ -21,6 +22,18 @@ CREATE TABLE Employees
 	LastName	NVARCHAR(100) NOT NULL,
 	Salary		FLOAT NOT NULL
 )
+
+INSERT INTO Jobs VALUES (1, 'PHP Developer')
+INSERT INTO Jobs VALUES (2, '.NET Sogtware Engineer')
+INSERT INTO Jobs VALUES (3, 'Chief Executive Officer')
+
+INSERT INTO Employees Values (1, 1, 'C', 'C', 25.09)
+INSERT INTO Employees Values (2, 2, 'A', 'A', 39.23)
+INSERT INTO Employees Values (3, 1, 'E', 'E', 100.67)
+INSERT INTO Employees Values (4, 2, 'D', 'D', 11.20)
+INSERT INTO Employees Values (5, 3, 'A', 'A', 200.09)
+INSERT INTO Employees Values (6, 1, 'B', 'B', 300.01)
+INSERT INTO Employees Values (7, 2, 'F', 'F', 1)
 
 ALTER TABLE
 	Employees
@@ -42,6 +55,93 @@ CREATE PROCEDURE GetEmployeeList
 	@PageSize	INT
 )
 AS
+SELECT * FROM
+(
+	SELECT
+		FullName,
+		Salary,
+		ROW_NUMBER() OVER (ORDER BY 
+			CASE WHEN @SortExp = 'FullName_Ascending'
+				THEN FullName
+			END ASC,
+			CASE WHEN @SortExp = 'FullName_Descending'
+				THEN FullName
+			END DESC,
+			CASE WHEN @SortExp = 'Salary_Ascending'
+				THEN Salary
+			END ASC,
+			CASE WHEN @SortExp = 'Salary_Descending'
+				THEN Salary
+			END DESC) AS RowNumber
+	FROM
+	(
+		SELECT 
+			Employees.FirstName + SPACE(1) + Employees.LastName AS FullName,
+			Employees.Salary
+		FROM
+			Employees
+		WHERE
+			Employees.JobId = @JobId
+	) AS Temp
+) AS Temp
+WHERE
+	RowNumber BETWEEN (@PageIndex * @PageSize + 1) AND ((@PageIndex + 1) * @PageSize)
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+WHERE
+	RowNumber BETWEEN (@PageIndex * @PageSize + 1) AND ((@PageIndex + 1) * @PageSize)
+	*/
+
+/*
+WITH Temp AS
+(
+	SELECT 
+		Employees.FirstName + SPACE(1) + Employees.LastName AS FullName,
+		Employees.Salary
+	FROM
+		Employees
+	WHERE
+		Employees.JobId = @JobId
+)
+WITH Temp AS
+(	
+	SELECT
+		FullName,
+		Salary,
+		ROW_NUMBER() OVER (ORDER BY 
+			CASE WHEN @SortExp = 'FullName_Ascending'
+				THEN FullName
+			END ASC,
+			CASE WHEN @SortExp = 'FullName_Descending'
+				THEN FullName
+			END DESC,
+			CASE WHEN @SortExp = 'Salary_Ascending'
+				THEN Salary
+			END ASC,
+			CASE WHEN @SortExp = 'Salary_Descending'
+				THEN Salary
+			END DESC) AS RowNumber
+)
+*/
+/*
+	FROM
+		Temp AS T
+	WHERE
+		T.RowNumber BETWEEN (@PageIndex * @PageSize + 1) AND ((@PageIndex + 1) * @PageSize)
+		*/
+	
+/*
 	SELECT * FROM
 	(
 		SELECT 
@@ -66,6 +166,7 @@ AS
 				Employees.JobId = @JobId
 	) AS Temp
 	WHERE Temp.RowNumber BETWEEN (@PageIndex * @PageSize + 1) AND ((@PageIndex + 1) * @PageSize)
+*/
 
 
 /*
