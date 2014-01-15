@@ -1,11 +1,16 @@
-﻿USE master
+﻿GO
+USE master
+
 GO
 IF DB_ID('Employees') IS NOT NULL
 	DROP DATABASE Employees
+
 GO
 CREATE DATABASE Employees
+
 GO
 USE Employees
+
 GO
 CREATE TABLE Jobs
 (
@@ -13,6 +18,7 @@ CREATE TABLE Jobs
 	JobName		NVARCHAR(100) NOT NULL
 )
 
+GO
 CREATE TABLE Employees
 (
 	EmployeeId	INT PRIMARY KEY,
@@ -22,18 +28,7 @@ CREATE TABLE Employees
 	Salary		FLOAT NOT NULL
 )
 
-INSERT INTO Jobs VALUES (1, 'PHP Developer')
-INSERT INTO Jobs VALUES (2, '.NET Sogtware Engineer')
-INSERT INTO Jobs VALUES (3, 'Chief Executive Officer')
-
-INSERT INTO Employees Values (1, 1, 'Billy', 'Bob', 25.09)
-INSERT INTO Employees Values (2, 1, 'Billy', 'Ralph', 39.23)
-INSERT INTO Employees Values (3, 1, 'Axel', 'Norway', 100.67)
-INSERT INTO Employees Values (4, 1, 'Gary', 'Statham', 11.20)
-INSERT INTO Employees Values (5, 1, 'Carla', 'Davolio', 200.09)
-INSERT INTO Employees Values (6, 1, 'Drew', 'Barnsley', 300.01)
-INSERT INTO Employees Values (7, 1, 'Frank', 'Sinatra', 1)
-
+GO
 ALTER TABLE
 	Employees
 ADD CONSTRAINT 
@@ -46,12 +41,26 @@ ON UPDATE CASCADE
 ON DELETE CASCADE
 
 GO
+INSERT INTO Jobs VALUES (1, 'PHP Developer')
+INSERT INTO Jobs VALUES (2, '.NET Software Engineer')
+INSERT INTO Jobs VALUES (3, 'Chief Executive Officer')
+
+INSERT INTO Employees Values (1, 1, 'Billy', 'Bob', 25.09)
+INSERT INTO Employees Values (2, 1, 'Billy', 'Ralph', 39.23)
+INSERT INTO Employees Values (3, 1, 'Axel', 'Norway', 100.67)
+INSERT INTO Employees Values (4, 1, 'Gary', 'Statham', 11.20)
+INSERT INTO Employees Values (5, 1, 'Carla', 'Davolio', 200.09)
+INSERT INTO Employees Values (6, 1, 'Drew', 'Barnsley', 300.01)
+INSERT INTO Employees Values (7, 1, 'Frank', 'Sinatra', 1)
+
+GO
 CREATE PROCEDURE GetEmployeeList
 (
 	@JobId		INT,
 	@SortExp	NVARCHAR(50),
 	@PageIndex	INT,
-	@PageSize	INT
+	@PageSize	INT,
+	@EmpCount	INT OUTPUT
 )
 AS
 SELECT * FROM
@@ -87,3 +96,16 @@ SELECT * FROM
 ) AS Temp
 WHERE
 	RowNumber BETWEEN (@PageIndex * @PageSize + 1) AND ((@PageIndex + 1) * @PageSize)
+
+GO
+CREATE PROCEDURE GetEmployeeListVirtualCount
+(
+	@JobId		INT
+)
+AS
+SELECT
+	COUNT(*)
+FROM
+	Employees
+WHERE
+	Employees.JobId = @JobId
