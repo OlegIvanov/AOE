@@ -26,25 +26,49 @@ namespace AOE.Repository
                 SqlCommand command = new SqlCommand("GetEmployeeList", connection);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@JobId", SqlDbType.Int).Value = employeeListRequest.JobId;
-
+                command.Parameters.Add("@SortExp", SqlDbType.NVarChar, 50).Value = GetSortExpression(employeeListRequest.SortColumn, employeeListRequest.SortOrder);
+                command.Parameters.Add("@PageIndex", SqlDbType.Int).Value = employeeListRequest.PageIndex;
+                command.Parameters.Add("@PageSize", SqlDbType.Int).Value = employeeListRequest.PageSize;
                 connection.Open();
                 IDataReader reader = ExecuteReader(command);
+                IList<Employee> employees = new List<Employee>();
+                while (reader.Read())
+                {
+                    employees.Add(new Employee() {
+                        Id = (int)reader["EmployeeId"],
+                        FullName = (string)reader["FullName"],
+                        Salary = (double)reader["Salary"]
+                    });
+                }
+                EmployeeListResponse employeeListResponse = new EmployeeListResponse();
+                employeeListResponse.Employees = employees;
+                return employeeListResponse;
             }
+        }
 
-            //SqlDbType.
-            /*
-            using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        private string GetSortExpression(SortColumn sortColumn, Service.SortOrder sortOrder)
+        {
+            StringBuilder sortExpression = new StringBuilder();
+            switch (sortColumn)
             {
-                SqlCommand cmd = new SqlCommand("GetTagsByUserName", cn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@UserName", SqlDbType.NVarChar, 20).Value = userName;
-                cmd.Parameters.Add("@PageIndex", SqlDbType.Int).Value = pageIndex;
-                cmd.Parameters.Add("@PageSize", SqlDbType.Int).Value = pageSize;
-                cn.Open();
-                return GetTagCollectionFromReader(ExecuteReader(cmd));
+                case SortColumn.FullName:
+                    sortExpression.Append("FullName");
+                    break;
+                case SortColumn.Salary:
+                    sortExpression.Append("Salary");
+                    break;
             }
-             */
-            throw new NotImplementedException();
+            sortExpression.Append("_");
+            switch (sortOrder)
+            { 
+                case Service.SortOrder.Ascending:
+                    sortExpression.Append("Ascending");
+                    break;
+                case Service.SortOrder.Descending:
+                    sortExpression.Append("Descending");
+                    break;
+            }
+            return sortExpression.ToString();
         }
 
         private IDataReader ExecuteReader(DbCommand command)

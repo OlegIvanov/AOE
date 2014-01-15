@@ -57,6 +57,7 @@ AS
 SELECT * FROM
 (
 	SELECT
+		EmployeeId,
 		FullName,
 		Salary,
 		ROW_NUMBER() OVER (ORDER BY 
@@ -74,7 +75,8 @@ SELECT * FROM
 			END DESC) AS RowNumber
 	FROM
 	(
-		SELECT 
+		SELECT
+			Employees.EmployeeId,
 			Employees.FirstName + SPACE(1) + Employees.LastName AS FullName,
 			Employees.Salary
 		FROM

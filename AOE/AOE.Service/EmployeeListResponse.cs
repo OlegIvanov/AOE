@@ -8,5 +8,6 @@ namespace AOE.Service
 {
     public class EmployeeListResponse
     {
+        public IList<Employee> Employees { get; set; }
     }
 }
