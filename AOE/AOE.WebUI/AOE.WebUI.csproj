@@ -57,6 +57,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CreateDatabase.sql" />
     <Content Include="Default.aspx" />
     <Content Include="EmployeeList.ascx" />
     <Content Include="EmployeeList.xml" />
