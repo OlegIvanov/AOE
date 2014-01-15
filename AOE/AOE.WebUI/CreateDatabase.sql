@@ -14,18 +14,18 @@ USE Employees
 GO
 CREATE TABLE Jobs
 (
-	JobId		INT PRIMARY KEY,
-	JobName		NVARCHAR(100) NOT NULL
+	JobId					INT PRIMARY KEY,
+	JobName					NVARCHAR(100) NOT NULL
 )
 
 GO
 CREATE TABLE Employees
 (
-	EmployeeId	INT PRIMARY KEY,
-	JobId		INT NOT NULL,
-	FirstName	NVARCHAR(100) NOT NULL,
-	LastName	NVARCHAR(100) NOT NULL,
-	Salary		FLOAT NOT NULL
+	EmployeeId				INT PRIMARY KEY,
+	JobId					INT NOT NULL,
+	FirstName				NVARCHAR(100) NOT NULL,
+	LastName				NVARCHAR(100) NOT NULL,
+	Salary					FLOAT NOT NULL
 )
 
 GO
@@ -56,11 +56,11 @@ INSERT INTO Employees Values (7, 1, 'Frank', 'Sinatra', 1)
 GO
 CREATE PROCEDURE GetEmployeeList
 (
-	@JobId		INT,
-	@SortExp	NVARCHAR(50),
-	@PageIndex	INT,
-	@PageSize	INT,
-	@EmpCount	INT OUTPUT
+	@JobId					INT,
+	@SortExpression			NVARCHAR(50),
+	@PageIndex				INT,
+	@PageSize				INT,
+	@EmployeeVirtualCount	INT OUTPUT
 )
 AS
 SELECT * FROM
@@ -70,16 +70,16 @@ SELECT * FROM
 		FullName,
 		Salary,
 		ROW_NUMBER() OVER (ORDER BY 
-			CASE WHEN @SortExp = 'FullName_Ascending'
+			CASE WHEN @SortExpression = 'FullName_Ascending'
 				THEN FullName
 			END ASC,
-			CASE WHEN @SortExp = 'FullName_Descending'
+			CASE WHEN @SortExpression = 'FullName_Descending'
 				THEN FullName
 			END DESC,
-			CASE WHEN @SortExp = 'Salary_Ascending'
+			CASE WHEN @SortExpression = 'Salary_Ascending'
 				THEN Salary
 			END ASC,
-			CASE WHEN @SortExp = 'Salary_Descending'
+			CASE WHEN @SortExpression = 'Salary_Descending'
 				THEN Salary
 			END DESC) AS RowNumber
 	FROM
@@ -96,16 +96,4 @@ SELECT * FROM
 ) AS Temp
 WHERE
 	RowNumber BETWEEN (@PageIndex * @PageSize + 1) AND ((@PageIndex + 1) * @PageSize)
-
-GO
-CREATE PROCEDURE GetEmployeeListVirtualCount
-(
-	@JobId		INT
-)
-AS
-SELECT
-	COUNT(*)
-FROM
-	Employees
-WHERE
-	Employees.JobId = @JobId
+SET @EmployeeVirtualCount = (SELECT COUNT(*) FROM Employees WHERE Employees.JobId = @JobId)

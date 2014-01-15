@@ -26,9 +26,10 @@ namespace AOE.Repository
                 SqlCommand command = new SqlCommand("GetEmployeeList", connection);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@JobId", SqlDbType.Int).Value = employeeListRequest.JobId;
-                command.Parameters.Add("@SortExp", SqlDbType.NVarChar, 50).Value = GetSortExpression(employeeListRequest.SortColumn, employeeListRequest.SortOrder);
+                command.Parameters.Add("@SortExpression", SqlDbType.NVarChar, 50).Value = GetSortExpression(employeeListRequest.SortColumn, employeeListRequest.SortOrder);
                 command.Parameters.Add("@PageIndex", SqlDbType.Int).Value = employeeListRequest.PageIndex;
                 command.Parameters.Add("@PageSize", SqlDbType.Int).Value = employeeListRequest.PageSize;
+                command.Parameters.Add("@EmployeeVirtualCount", SqlDbType.Int).Direction = ParameterDirection.Output;
                 connection.Open();
                 IDataReader reader = ExecuteReader(command);
                 IList<Employee> employees = new List<Employee>();
@@ -41,7 +42,8 @@ namespace AOE.Repository
                     });
                 }
                 return new EmployeeListResponse() { 
-                    Employees = employees
+                    Employees = employees,
+                    EmployeeVirtualCount = (int)command.Parameters["EmployeeVirtualCount"].Value
                 };
             }
         }
