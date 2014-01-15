@@ -27,12 +27,12 @@ INSERT INTO Jobs VALUES (2, '.NET Sogtware Engineer')
 INSERT INTO Jobs VALUES (3, 'Chief Executive Officer')
 
 INSERT INTO Employees Values (1, 1, 'Billy', 'Bob', 25.09)
-INSERT INTO Employees Values (2, 2, 'Billy', 'Ralph', 39.23)
+INSERT INTO Employees Values (2, 1, 'Billy', 'Ralph', 39.23)
 INSERT INTO Employees Values (3, 1, 'Axel', 'Norway', 100.67)
-INSERT INTO Employees Values (4, 2, 'Gary', 'Statham', 11.20)
-INSERT INTO Employees Values (5, 3, 'Carla', 'Davolio', 200.09)
+INSERT INTO Employees Values (4, 1, 'Gary', 'Statham', 11.20)
+INSERT INTO Employees Values (5, 1, 'Carla', 'Davolio', 200.09)
 INSERT INTO Employees Values (6, 1, 'Drew', 'Barnsley', 300.01)
-INSERT INTO Employees Values (7, 2, 'Frank', 'Sinatra', 1)
+INSERT INTO Employees Values (7, 1, 'Frank', 'Sinatra', 1)
 
 ALTER TABLE
 	Employees
