@@ -40,9 +40,9 @@ namespace AOE.Repository
                         Salary = (double)reader["Salary"]
                     });
                 }
-                EmployeeListResponse employeeListResponse = new EmployeeListResponse();
-                employeeListResponse.Employees = employees;
-                return employeeListResponse;
+                return new EmployeeListResponse() { 
+                    Employees = employees
+                };
             }
         }
 
