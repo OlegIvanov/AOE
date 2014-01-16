@@ -1,4 +1,6 @@
-﻿using AOE.Service;
+﻿using AOE.Repository;
+using AOE.Service;
+using StructureMap;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,7 +22,6 @@ namespace AOE.WebUI
 
         protected void Page_Init(object sender, EventArgs e)
         {
-            _presenter = new EmployeeListPresenter(this, new EmployeeService(null));
             ddlJobList.DataBound += ddlJobList_DataBound;
             gvEmployeeList.RowCommand += gvEmployeeList_RowCommand;
             gvEmployeeList.PageIndexChanging += gvEmployeeList_PageIndexChanging;
@@ -31,6 +32,9 @@ namespace AOE.WebUI
             if (!IsPostBack)
             {
                 EmployeeListConfig config = EmployeeListConfig.GetConfig(XmlConfigFile);
+                StructureMap.IContainer container = DataSourceResolver.GetConfiguredContainer(config);
+                _presenter = new EmployeeListPresenter(this, container.GetInstance<EmployeeService>());
+
                 gvEmployeeList.PageSize = config.PageSize;
                 gvEmployeeList.Columns[2].Visible = config.IsEditable;
                 ViewState["SortColumn"] = SortColumn.None;

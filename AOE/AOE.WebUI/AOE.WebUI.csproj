@@ -84,6 +84,7 @@
     <Compile Include="EmployeeListConfig.cs" />
     <Compile Include="EmployeeListDataSource.cs" />
     <Compile Include="EmployeeListPresenter.cs" />
+    <Compile Include="DataSourceResolver.cs" />
     <Compile Include="IEmployeeListView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -96,6 +97,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AOE.Repository\AOE.Repository.csproj">
+      <Project>{2d44d663-af7b-40ec-afde-57c95e2b7740}</Project>
+      <Name>AOE.Repository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AOE.Service\AOE.Service.csproj">
       <Project>{9300a212-8f95-49c4-873a-7d4c7668675c}</Project>
       <Name>AOE.Service</Name>
