@@ -10,28 +10,27 @@ using System.Web.Configuration;
 
 namespace AOE.WebUI
 {
-    public static class DataSourceResolver
+    public static class DependencyResolver
     {
-        public static IContainer GetConfiguredContainer(EmployeeListConfig employeeListConfig)
+        public static IContainer GetConfiguredContainer(EmployeeListControlConfig config)
         {
-            IContainer container = new Container();
-            switch (employeeListConfig.DataSource)
+            IContainer container = null;
+            switch (config.DataSource.Type)
             {
-                case EmployeeListDataSource.Database:
-                    container.Configure(x => 
-                    {
+                case SourceType.Database:
+                    container = new Container(x => {
                         x.For<IEmployeeRepository>()
                             .Use<EmployeeDatabaseRepository>()
-                            .Ctor<string>("connectionString")
+                            .Ctor<string>()
                             .Is(WebConfigurationManager.ConnectionStrings["LocalDatabase"].ConnectionString);
                     });
                     break;
-                case EmployeeListDataSource.WebService:
-                    container.Configure(x => {
+                case SourceType.Webservice:
+                    container = new Container(x => {
                         x.For<IEmployeeRepository>()
                             .Use<EmployeeWebServiceRepository>()
-                            .Ctor<string>("url")
-                            .Is(employeeListConfig.Url);
+                            .Ctor<string>()
+                            .Is(config.DataSource.Url);
                     });
                     break;
             }

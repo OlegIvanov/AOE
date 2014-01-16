@@ -63,7 +63,7 @@
     <Content Include="CreateDatabase.sql" />
     <Content Include="Default.aspx" />
     <Content Include="EmployeeList.ascx" />
-    <Content Include="EmployeeList.xml" />
+    <Content Include="EmployeeListConfig.xml" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -81,10 +81,9 @@
     <Compile Include="EmployeeList.ascx.designer.cs">
       <DependentUpon>EmployeeList.ascx</DependentUpon>
     </Compile>
-    <Compile Include="EmployeeListConfig.cs" />
-    <Compile Include="EmployeeListDataSource.cs" />
+    <Compile Include="EmployeeListControlConfig.cs" />
     <Compile Include="EmployeeListPresenter.cs" />
-    <Compile Include="DataSourceResolver.cs" />
+    <Compile Include="DependencyResolver.cs" />
     <Compile Include="IEmployeeListView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
