@@ -42,6 +42,7 @@ namespace AOE.Repository
                         Salary = (double)reader["Salary"]
                     });
                 }
+                reader.Close();
                 return new EmployeeListResponse() 
                 { 
                     Employees = employees,
