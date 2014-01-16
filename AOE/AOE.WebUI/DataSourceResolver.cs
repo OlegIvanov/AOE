@@ -24,12 +24,6 @@ namespace AOE.WebUI
                             .Use<EmployeeDatabaseRepository>()
                             .Ctor<string>("connectionString")
                             .Is(WebConfigurationManager.ConnectionStrings["LocalDatabase"].ConnectionString);
-
-                            //.Is(x => { return WebConfigurationManager.ConnectionStrings["LocalDatabase"].ConnectionString });
-
-
-
-                            //.EqualToAppSetting(WebConfigurationManager.ConnectionStrings["LocalDatabase"].ConnectionString);
                     });
                     break;
             }

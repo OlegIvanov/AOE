@@ -54,7 +54,7 @@ namespace AOE.Repository
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                SqlCommand command = new SqlCommand("GetJobList");
+                SqlCommand command = new SqlCommand("GetJobList", connection);
                 command.CommandType = CommandType.StoredProcedure;
                 connection.Open();
                 IDataReader reader = ExecuteReader(command);

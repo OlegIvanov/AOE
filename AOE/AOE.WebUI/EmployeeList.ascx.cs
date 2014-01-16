@@ -32,8 +32,7 @@ namespace AOE.WebUI
             if (!IsPostBack)
             {
                 EmployeeListConfig config = EmployeeListConfig.GetConfig(XmlConfigFile);
-                StructureMap.IContainer container = DataSourceResolver.GetConfiguredContainer(config);
-                _presenter = new EmployeeListPresenter(this, container.GetInstance<EmployeeService>());
+                _presenter = new EmployeeListPresenter(this, DataSourceResolver.GetConfiguredContainer(config).GetInstance<EmployeeService>());
 
                 gvEmployeeList.PageSize = config.PageSize;
                 gvEmployeeList.Columns[2].Visible = config.IsEditable;
