@@ -32,6 +32,8 @@ namespace AOE.WebUI
             _presenter = new EmployeeListPresenter(this, DataSourceResolver.GetConfiguredContainer(config).GetInstance<EmployeeService>());
 
             ddlJobList.DataBound += ddlJobList_DataBound;
+            ddlJobList.SelectedIndexChanged += ddlJobList_SelectedIndexChanged;
+
             gvEmployeeList.RowCommand += gvEmployeeList_RowCommand;
             gvEmployeeList.PageIndexChanging += gvEmployeeList_PageIndexChanging;
         }
@@ -55,6 +57,11 @@ namespace AOE.WebUI
         }
 
         protected void ddlJobList_DataBound(object sender, EventArgs e)
+        {
+            _presenter.DisplayEmployeeList();
+        }
+
+        protected void ddlJobList_SelectedIndexChanged(object sender, EventArgs e)
         {
             _presenter.DisplayEmployeeList();
         }
