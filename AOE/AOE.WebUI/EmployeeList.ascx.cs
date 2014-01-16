@@ -36,6 +36,9 @@ namespace AOE.WebUI
 
             gvEmployeeList.RowCommand += gvEmployeeList_RowCommand;
             gvEmployeeList.PageIndexChanging += gvEmployeeList_PageIndexChanging;
+            gvEmployeeList.RowEditing += gvEmployeeList_RowEditing;
+            gvEmployeeList.RowCancelingEdit += gvEmployeeList_RowCancelingEdit;
+            gvEmployeeList.RowUpdating += gvEmployeeList_RowUpdating;
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -96,6 +99,7 @@ namespace AOE.WebUI
                 }
                 gvEmployeeList.EditIndex = -1;
                 gvEmployeeList.PageIndex = 0;
+
                 _presenter.DisplayEmployeeList();
             }
         }
@@ -104,6 +108,24 @@ namespace AOE.WebUI
         {
             gvEmployeeList.EditIndex = -1;
             gvEmployeeList.PageIndex = e.NewPageIndex;
+            _presenter.DisplayEmployeeList();
+        }
+
+        protected void gvEmployeeList_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            gvEmployeeList.EditIndex = e.NewEditIndex;
+            _presenter.DisplayEmployeeList();
+        }
+
+        protected void gvEmployeeList_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            gvEmployeeList.EditIndex = -1;
+            _presenter.DisplayEmployeeList();
+        }
+
+        protected void gvEmployeeList_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            gvEmployeeList.EditIndex = -1;
             _presenter.DisplayEmployeeList();
         }
 
