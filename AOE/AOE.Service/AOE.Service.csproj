@@ -42,6 +42,7 @@
     <Compile Include="Employee.cs" />
     <Compile Include="EmployeeListRequest.cs" />
     <Compile Include="EmployeeListResponse.cs" />
+    <Compile Include="EmployeeService.cs" />
     <Compile Include="IEmployeeRepository.cs" />
     <Compile Include="Job.cs" />
     <Compile Include="JobListResponse.cs" />

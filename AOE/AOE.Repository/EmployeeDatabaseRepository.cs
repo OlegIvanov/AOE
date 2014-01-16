@@ -45,7 +45,7 @@ namespace AOE.Repository
                 return new EmployeeListResponse() 
                 { 
                     Employees = employees,
-                    EmployeeVirtualCount = (int)command.Parameters["EmployeeVirtualCount"].Value
+                    EmployeeVirtualCount = (int)command.Parameters["@EmployeeVirtualCount"].Value
                 };
             }
         }

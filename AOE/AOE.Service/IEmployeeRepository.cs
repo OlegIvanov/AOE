@@ -9,5 +9,6 @@ namespace AOE.Service
     public interface IEmployeeRepository
     {
         EmployeeListResponse GetEmployeeList(EmployeeListRequest employeeListRequest);
+        JobListResponse GetJobList();
     }
 }
