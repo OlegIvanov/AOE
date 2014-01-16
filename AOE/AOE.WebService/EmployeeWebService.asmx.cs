@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AOE.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,11 +17,16 @@ namespace AOE.WebService
     // [System.Web.Script.Services.ScriptService]
     public class EmployeeWebService : System.Web.Services.WebService
     {
+        [WebMethod]
+        public JobListResponse GetJobList()
+        {
+            throw new NotImplementedException();
+        }
 
         [WebMethod]
-        public string HelloWorld()
+        public EmployeeListResponse GetEmployeeList(EmployeeListRequest employeeListRequest)
         {
-            return "Hello World";
+            throw new NotImplementedException();
         }
     }
 }
