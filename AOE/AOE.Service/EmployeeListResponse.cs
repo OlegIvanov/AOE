@@ -7,7 +7,7 @@ namespace AOE.Service
 {
     public class EmployeeListResponse
     {
-        public IList<Employee> Employees { get; set; }
+        public List<Employee> Employees { get; set; }
         public int EmployeeVirtualCount { get; set; }
     }
 }

@@ -1,8 +1,10 @@
-﻿using AOE.Service;
+﻿using AOE.Repository;
+using AOE.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Services;
 
 namespace AOE.WebService
@@ -17,16 +19,23 @@ namespace AOE.WebService
     // [System.Web.Script.Services.ScriptService]
     public class EmployeeWebService : System.Web.Services.WebService
     {
+        private EmployeeDatabaseRepository _repository;
+
+        public EmployeeWebService() 
+        {
+            _repository = new EmployeeDatabaseRepository(WebConfigurationManager.ConnectionStrings["LocalDatabase"].ConnectionString);
+        }
+
         [WebMethod]
         public JobListResponse GetJobList()
         {
-            throw new NotImplementedException();
+            return _repository.GetJobList();
         }
 
         [WebMethod]
         public EmployeeListResponse GetEmployeeList(EmployeeListRequest employeeListRequest)
         {
-            throw new NotImplementedException();
+            return _repository.GetEmployeeList(employeeListRequest);
         }
     }
 }

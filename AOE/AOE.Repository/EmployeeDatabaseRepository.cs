@@ -31,7 +31,7 @@ namespace AOE.Repository
                 command.Parameters.Add("@EmployeeVirtualCount", SqlDbType.Int).Direction = ParameterDirection.Output;
                 connection.Open();
                 IDataReader reader = ExecuteReader(command);
-                IList<Employee> employees = new List<Employee>();
+                List<Employee> employees = new List<Employee>();
                 while (reader.Read())
                 {
                     employees.Add(new Employee() 
@@ -58,7 +58,7 @@ namespace AOE.Repository
                 command.CommandType = CommandType.StoredProcedure;
                 connection.Open();
                 IDataReader reader = ExecuteReader(command);
-                IList<Job> jobs = new List<Job>();
+                List<Job> jobs = new List<Job>();
                 while (reader.Read())
                 {
                     jobs.Add(new Job() 
