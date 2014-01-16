@@ -26,6 +26,14 @@ namespace AOE.WebUI
                             .Is(WebConfigurationManager.ConnectionStrings["LocalDatabase"].ConnectionString);
                     });
                     break;
+                case EmployeeListDataSource.WebService:
+                    container.Configure(x => {
+                        x.For<IEmployeeRepository>()
+                            .Use<EmployeeWebServiceRepository>()
+                            .Ctor<string>("url")
+                            .Is(employeeListConfig.Url);
+                    });
+                    break;
             }
             return container;
         }
