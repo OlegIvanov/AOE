@@ -67,6 +67,7 @@ namespace AOE.WebUI
         protected void ddlJobList_SelectedIndexChanged(object sender, EventArgs e)
         {
             gvEmployeeList.EditIndex = -1;
+            gvEmployeeList.PageIndex = 0;
             _presenter.DisplayEmployeeList();
         }
 
