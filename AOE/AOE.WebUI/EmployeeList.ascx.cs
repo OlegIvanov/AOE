@@ -22,6 +22,15 @@ namespace AOE.WebUI
 
         protected void Page_Init(object sender, EventArgs e)
         {
+            EmployeeListConfig config = (EmployeeListConfig)ViewState["EmployeeListConfig"];
+            if (config == null)
+            {
+                config = EmployeeListConfig.GetConfig(XmlConfigFile);
+                ViewState["EmployeeListConfig"] = config;
+            }
+
+            _presenter = new EmployeeListPresenter(this, DataSourceResolver.GetConfiguredContainer(config).GetInstance<EmployeeService>());
+
             ddlJobList.DataBound += ddlJobList_DataBound;
             gvEmployeeList.RowCommand += gvEmployeeList_RowCommand;
             gvEmployeeList.PageIndexChanging += gvEmployeeList_PageIndexChanging;
@@ -31,8 +40,7 @@ namespace AOE.WebUI
         {
             if (!IsPostBack)
             {
-                EmployeeListConfig config = EmployeeListConfig.GetConfig(XmlConfigFile);
-                _presenter = new EmployeeListPresenter(this, DataSourceResolver.GetConfiguredContainer(config).GetInstance<EmployeeService>());
+                EmployeeListConfig config = (EmployeeListConfig)ViewState["EmployeeListConfig"];
 
                 gvEmployeeList.PageSize = config.PageSize;
                 gvEmployeeList.Columns[2].Visible = config.IsEditable;
