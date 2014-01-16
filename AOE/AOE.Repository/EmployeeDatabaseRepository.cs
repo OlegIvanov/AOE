@@ -30,7 +30,7 @@ namespace AOE.Repository
                 command.Parameters.Add("@PageSize", SqlDbType.Int).Value = employeeListRequest.PageSize;
                 command.Parameters.Add("@EmployeeVirtualCount", SqlDbType.Int).Direction = ParameterDirection.Output;
                 connection.Open();
-                IDataReader reader = ExecuteReader(command);
+                IDataReader reader = command.ExecuteReader();
                 List<Employee> employees = new List<Employee>();
                 while (reader.Read())
                 {
@@ -57,7 +57,7 @@ namespace AOE.Repository
                 SqlCommand command = new SqlCommand("GetJobList", connection);
                 command.CommandType = CommandType.StoredProcedure;
                 connection.Open();
-                IDataReader reader = ExecuteReader(command);
+                IDataReader reader = command.ExecuteReader();
                 List<Job> jobs = new List<Job>();
                 while (reader.Read())
                 {
@@ -97,11 +97,6 @@ namespace AOE.Repository
                     break;
             }
             return sortExpression.ToString();
-        }
-
-        private IDataReader ExecuteReader(DbCommand command)
-        {
-            return command.ExecuteReader();
         }
     }
 }
