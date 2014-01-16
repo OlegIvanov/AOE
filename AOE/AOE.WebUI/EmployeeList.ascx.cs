@@ -28,12 +28,9 @@ namespace AOE.WebUI
                 config = EmployeeListConfig.GetConfig(XmlConfigFile);
                 ViewState["EmployeeListConfig"] = config;
             }
-
             _presenter = new EmployeeListPresenter(this, DataSourceResolver.GetConfiguredContainer(config).GetInstance<EmployeeService>());
-
             ddlJobList.DataBound += ddlJobList_DataBound;
             ddlJobList.SelectedIndexChanged += ddlJobList_SelectedIndexChanged;
-
             gvEmployeeList.RowCommand += gvEmployeeList_RowCommand;
             gvEmployeeList.PageIndexChanging += gvEmployeeList_PageIndexChanging;
             gvEmployeeList.RowEditing += gvEmployeeList_RowEditing;
@@ -46,15 +43,12 @@ namespace AOE.WebUI
             if (!IsPostBack)
             {
                 EmployeeListConfig config = (EmployeeListConfig)ViewState["EmployeeListConfig"];
-
                 gvEmployeeList.PageSize = config.PageSize;
                 gvEmployeeList.Columns[2].Visible = config.IsEditable;
-                ViewState["SortColumn"] = SortColumn.None;
-                ViewState["SortOrder"] = SortOrder.None;
-
                 ddlJobList.DataValueField = "Id";
                 ddlJobList.DataTextField = "Name";
-
+                ViewState["SortColumn"] = SortColumn.None;
+                ViewState["SortOrder"] = SortOrder.None;
                 _presenter.DisplayJobList();
             }
         }
@@ -101,7 +95,6 @@ namespace AOE.WebUI
                 }
                 gvEmployeeList.EditIndex = -1;
                 gvEmployeeList.PageIndex = 0;
-
                 _presenter.DisplayEmployeeList();
             }
         }
