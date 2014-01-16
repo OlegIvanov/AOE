@@ -2,6 +2,6 @@
 
 <Config>
   <DataSource type="DataBase" />
-  <PageSize>5</PageSize>
-  <IsEditable>true</IsEditable>
+  <PageSize>3</PageSize>
+  <IsEditable>false</IsEditable>
 </Config>
