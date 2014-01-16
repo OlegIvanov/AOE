@@ -38,6 +38,10 @@ namespace AOE.WebUI
                 gvEmployeeList.Columns[2].Visible = config.IsEditable;
                 ViewState["SortColumn"] = SortColumn.None;
                 ViewState["SortOrder"] = SortOrder.None;
+
+                ddlJobList.DataValueField = "Id";
+                ddlJobList.DataTextField = "Name";
+
                 _presenter.DisplayJobList();
             }
         }
