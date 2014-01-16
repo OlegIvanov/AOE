@@ -5,7 +5,7 @@
 <p>Employees/Salary:</p>
 <asp:GridView ID="gvEmployeeList" runat="server" AutoGenerateColumns="false" AllowPaging="true" AllowCustomPaging="true">
     <Columns>
-        <asp:TemplateField ItemStyle-Width="300">
+        <asp:TemplateField ItemStyle-Width="300" HeaderStyle-HorizontalAlign="Left">
             <HeaderTemplate>
                 <asp:LinkButton CommandName="SortByFullName" runat="server" Text="FullName"></asp:LinkButton>
             </HeaderTemplate>
@@ -16,7 +16,7 @@
                 <%# Eval("FullName") %>
             </EditItemTemplate>
         </asp:TemplateField>
-        <asp:TemplateField ItemStyle-Width="100">
+        <asp:TemplateField ItemStyle-Width="200" HeaderStyle-HorizontalAlign="Left" ItemStyle-HorizontalAlign="Right">
             <HeaderTemplate>
                 <asp:LinkButton CommandName="SortBySalary" runat="server" Text="Salary"></asp:LinkButton>
             </HeaderTemplate>
@@ -24,7 +24,7 @@
                 <%# Eval("Salary") %>
             </ItemTemplate>
             <EditItemTemplate>
-                <asp:TextBox ID="tbSalary" runat="server" Text='<%# Eval("Salary") %>'></asp:TextBox>
+                <asp:TextBox ID="tbSalary" runat="server" Text='<%# Eval("Salary") %>' Width="200"></asp:TextBox>
             </EditItemTemplate>
         </asp:TemplateField>
         <asp:CommandField ShowEditButton="true" />
