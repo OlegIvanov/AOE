@@ -7,7 +7,7 @@
     <Columns>
         <asp:TemplateField ItemStyle-Width="300" HeaderStyle-HorizontalAlign="Left">
             <HeaderTemplate>
-                <asp:LinkButton CommandName="SortByFullName" runat="server" Text="FullName"></asp:LinkButton>
+                <asp:LinkButton CommandName="SortByFullName" runat="server" Text="FullName" Font-Bold="false"></asp:LinkButton>
             </HeaderTemplate>
             <ItemTemplate>
                 <%# Eval("FullName") %>
@@ -19,7 +19,7 @@
         </asp:TemplateField>
         <asp:TemplateField ItemStyle-Width="220" HeaderStyle-HorizontalAlign="Left" ItemStyle-HorizontalAlign="Left">
             <HeaderTemplate>
-                <asp:LinkButton CommandName="SortBySalary" runat="server" Text="Salary"></asp:LinkButton>
+                <asp:LinkButton CommandName="SortBySalary" runat="server" Text="Salary" Font-Bold="false"></asp:LinkButton>
             </HeaderTemplate>
             <ItemTemplate>
                 <%# Eval("Salary") %>
