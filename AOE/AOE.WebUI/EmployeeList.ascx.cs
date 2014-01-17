@@ -124,13 +124,13 @@ namespace AOE.WebUI
             _presenter.DisplayEmployeeList();
         }
 
-        public void DisplayJobList(IList<Job> jobs)
+        public void DisplayJobList(List<Job> jobs)
         {
             ddlJobList.DataSource = jobs;
             ddlJobList.DataBind();
         }
 
-        public void DisplayEmployeeList(IList<Employee> employees, int employeeVirtualCount)
+        public void DisplayEmployeeList(List<Employee> employees, int employeeVirtualCount)
         {
             gvEmployeeList.VirtualItemCount = employeeVirtualCount;
             gvEmployeeList.DataSource = employees;
