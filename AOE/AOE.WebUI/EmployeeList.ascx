@@ -17,7 +17,7 @@
                 <%# Eval("FullName") %>
             </EditItemTemplate>
         </asp:TemplateField>
-        <asp:TemplateField ItemStyle-Width="220" HeaderStyle-HorizontalAlign="Left" ItemStyle-HorizontalAlign="Left" HeaderStyle-BackColor="LightGray">
+        <asp:TemplateField ItemStyle-Width="220" HeaderStyle-HorizontalAlign="Left" HeaderStyle-BackColor="LightGray" ItemStyle-HorizontalAlign="Left">
             <HeaderTemplate>
                 <asp:LinkButton CommandName="SortBySalary" runat="server" Text="Salary" Font-Bold="false"></asp:LinkButton>
             </HeaderTemplate>
