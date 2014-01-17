@@ -25,7 +25,7 @@
                 <%# Eval("Salary") %>
             </ItemTemplate>
             <EditItemTemplate>
-                <asp:TextBox ID="tbSalary" runat="server" Text='<%# Eval("Salary") %>' Width="200"></asp:TextBox>
+                <asp:TextBox ID="tbSalary" runat="server" Text='<%# Eval("Salary") %>' Width="200" Height="20" BorderStyle="Inset"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvSalary" runat="server" ControlToValidate="tbSalary" Display="Dynamic" Text="*" ForeColor="Red"></asp:RequiredFieldValidator>
                 <asp:RangeValidator ID="rvSalary" runat="server" ControlToValidate="tbSalary" Type="Currency" MinimumValue="0" MaximumValue="1000000000" Display="Dynamic" Text="*" ForeColor="Red"></asp:RangeValidator>
             </EditItemTemplate>
