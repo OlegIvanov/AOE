@@ -17,7 +17,7 @@
                 <%# Eval("FullName") %>
             </EditItemTemplate>
         </asp:TemplateField>
-        <asp:TemplateField ItemStyle-Width="200" HeaderStyle-HorizontalAlign="Left" ItemStyle-HorizontalAlign="Right">
+        <asp:TemplateField ItemStyle-Width="220" HeaderStyle-HorizontalAlign="Left" ItemStyle-HorizontalAlign="Left">
             <HeaderTemplate>
                 <asp:LinkButton CommandName="SortBySalary" runat="server" Text="Salary"></asp:LinkButton>
             </HeaderTemplate>
@@ -26,6 +26,7 @@
             </ItemTemplate>
             <EditItemTemplate>
                 <asp:TextBox ID="tbSalary" runat="server" Text='<%# Eval("Salary") %>' Width="200"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvSalary" runat="server" ControlToValidate="tbSalary" Display="Dynamic" Text="*" ForeColor="Red"></asp:RequiredFieldValidator>
             </EditItemTemplate>
         </asp:TemplateField>
         <asp:CommandField ShowEditButton="true" />
