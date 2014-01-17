@@ -16,5 +16,7 @@ namespace AOE.WebUI
         SortOrder SortOrder { get; }
         int PageIndex { get; }
         int PageSize { get; }
+        int EmployeeId { get; }
+        double Salary { get; }
     }
 }

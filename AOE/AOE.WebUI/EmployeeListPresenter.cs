@@ -36,5 +36,10 @@ namespace AOE.WebUI
             EmployeeListResponse employeeListResponse = _employeeService.GetEmployeeList(employeeListRequest);
             _employeeListView.DisplayEmployeeList(employeeListResponse.Employees, employeeListResponse.EmployeeVirtualCount);
         }
+
+        public void UpdateEmployee()
+        { 
+
+        }
     }
 }

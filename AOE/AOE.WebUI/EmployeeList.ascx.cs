@@ -120,6 +120,7 @@ namespace AOE.WebUI
 
         protected void gvEmployeeList_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+            _presenter.UpdateEmployee();
             gvEmployeeList.EditIndex = -1;
             _presenter.DisplayEmployeeList();
         }
@@ -160,6 +161,16 @@ namespace AOE.WebUI
         public int PageSize
         {
             get { return gvEmployeeList.PageSize; }
+        }
+
+        public int EmployeeId
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public double Salary
+        {
+            get { throw new NotImplementedException(); }
         }
     }
 }
