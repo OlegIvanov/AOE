@@ -5,7 +5,7 @@
 <p>Employees/Salary:</p>
 <asp:GridView ID="gvEmployeeList" runat="server" AutoGenerateColumns="false" AllowPaging="true" AllowCustomPaging="true">
     <Columns>
-        <asp:TemplateField ItemStyle-Width="300" HeaderStyle-HorizontalAlign="Left">
+        <asp:TemplateField ItemStyle-Width="300" HeaderStyle-HorizontalAlign="Left" HeaderStyle-BackColor="LightGray">
             <HeaderTemplate>
                 <asp:LinkButton CommandName="SortByFullName" runat="server" Text="FullName" Font-Bold="false"></asp:LinkButton>
             </HeaderTemplate>
@@ -17,7 +17,7 @@
                 <%# Eval("FullName") %>
             </EditItemTemplate>
         </asp:TemplateField>
-        <asp:TemplateField ItemStyle-Width="220" HeaderStyle-HorizontalAlign="Left" ItemStyle-HorizontalAlign="Left">
+        <asp:TemplateField ItemStyle-Width="220" HeaderStyle-HorizontalAlign="Left" ItemStyle-HorizontalAlign="Left" HeaderStyle-BackColor="LightGray">
             <HeaderTemplate>
                 <asp:LinkButton CommandName="SortBySalary" runat="server" Text="Salary" Font-Bold="false"></asp:LinkButton>
             </HeaderTemplate>
