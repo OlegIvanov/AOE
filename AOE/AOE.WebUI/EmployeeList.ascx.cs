@@ -45,8 +45,6 @@ namespace AOE.WebUI
                 EmployeeListControlConfig config = (EmployeeListControlConfig)ViewState["EmployeeListConfig"];
                 gvEmployeeList.PageSize = config.PageSize;
                 gvEmployeeList.Columns[2].Visible = config.IsEditable;
-                ddlJobList.DataValueField = "Id";
-                ddlJobList.DataTextField = "Name";
                 ViewState["SortColumn"] = SortColumn.None;
                 ViewState["SortOrder"] = SortOrder.None;
                 _presenter.DisplayJobList();

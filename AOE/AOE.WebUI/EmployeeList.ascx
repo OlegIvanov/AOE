@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EmployeeList.ascx.cs" Inherits="AOE.WebUI.EmployeeList" %>
 
 <span>Job Title:</span>
-<asp:DropDownList ID="ddlJobList" runat="server" AutoPostBack="true"></asp:DropDownList>
+<asp:DropDownList ID="ddlJobList" runat="server" AutoPostBack="true" DataValueField="Id" DataTextField="Name"></asp:DropDownList>
 <p>Employees/Salary:</p>
 <asp:GridView ID="gvEmployeeList" runat="server" AutoGenerateColumns="false" AllowPaging="true" AllowCustomPaging="true">
     <Columns>
