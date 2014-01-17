@@ -18,6 +18,30 @@ namespace AOE.Repository
             _connectionString = connectionString;
         }
 
+        public JobListResponse GetJobList()
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                SqlCommand command = new SqlCommand("GetJobList", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                connection.Open();
+                IDataReader reader = command.ExecuteReader();
+                List<Job> jobs = new List<Job>();
+                while (reader.Read())
+                {
+                    jobs.Add(new Job()
+                    {
+                        Id = (int)reader["JobId"],
+                        Name = (string)reader["JobName"]
+                    });
+                }
+                return new JobListResponse()
+                {
+                    Jobs = jobs
+                };
+            }
+        }
+
         public EmployeeListResponse GetEmployeeList(EmployeeListRequest employeeListRequest)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -46,30 +70,6 @@ namespace AOE.Repository
                 { 
                     Employees = employees,
                     EmployeeVirtualCount = (int)command.Parameters["@EmployeeVirtualCount"].Value
-                };
-            }
-        }
-
-        public JobListResponse GetJobList()
-        {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                SqlCommand command = new SqlCommand("GetJobList", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                connection.Open();
-                IDataReader reader = command.ExecuteReader();
-                List<Job> jobs = new List<Job>();
-                while (reader.Read())
-                {
-                    jobs.Add(new Job() 
-                    { 
-                        Id = (int)reader["JobId"],
-                        Name = (string)reader["JobName"]
-                    });
-                }
-                return new JobListResponse()
-                {
-                    Jobs = jobs
                 };
             }
         }

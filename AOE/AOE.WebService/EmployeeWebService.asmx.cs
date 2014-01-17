@@ -37,5 +37,11 @@ namespace AOE.WebService
         {
             return _repository.GetEmployeeList(employeeListRequest);
         }
+
+        [WebMethod]
+        public void UpdateEmployee(EmployeeUpdateRequest employeeUpdateRequest)
+        {
+            _repository.UpdateEmployee(employeeUpdateRequest);
+        }
     }
 }

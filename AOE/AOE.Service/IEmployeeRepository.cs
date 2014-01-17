@@ -7,8 +7,8 @@ namespace AOE.Service
 {
     public interface IEmployeeRepository
     {
-        EmployeeListResponse GetEmployeeList(EmployeeListRequest employeeListRequest);
         JobListResponse GetJobList();
+        EmployeeListResponse GetEmployeeList(EmployeeListRequest employeeListRequest);
         void UpdateEmployee(EmployeeUpdateRequest employeeUpdateRequest);
     }
 }

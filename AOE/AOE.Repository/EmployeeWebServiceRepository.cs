@@ -15,12 +15,12 @@ namespace AOE.Repository
             _url = url;
         }
 
-        public EmployeeListResponse GetEmployeeList(EmployeeListRequest employeeListRequest)
+        public JobListResponse GetJobList()
         {
             throw new NotImplementedException();
         }
 
-        public JobListResponse GetJobList()
+        public EmployeeListResponse GetEmployeeList(EmployeeListRequest employeeListRequest)
         {
             throw new NotImplementedException();
         }
