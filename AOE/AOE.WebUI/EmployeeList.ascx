@@ -13,6 +13,7 @@
                 <%# Eval("FullName") %>
             </ItemTemplate>
             <EditItemTemplate>
+                <asp:HiddenField ID="hfEmployeeId" runat="server" Value='<%# Eval("Id") %>' />
                 <%# Eval("FullName") %>
             </EditItemTemplate>
         </asp:TemplateField>

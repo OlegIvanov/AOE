@@ -38,8 +38,12 @@ namespace AOE.WebUI
         }
 
         public void UpdateEmployee()
-        { 
-
+        {
+            EmployeeUpdateRequest employeeUpdateRequest = new EmployeeUpdateRequest()
+            {
+                EmployeeId = _employeeListView.EmployeeId,
+                Salary = _employeeListView.Salary
+            };
         }
     }
 }

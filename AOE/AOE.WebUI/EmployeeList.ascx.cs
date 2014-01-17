@@ -165,12 +165,20 @@ namespace AOE.WebUI
 
         public int EmployeeId
         {
-            get { throw new NotImplementedException(); }
+            get 
+            {
+                HiddenField hfEmployeeId = (HiddenField)gvEmployeeList.Rows[gvEmployeeList.EditIndex].FindControl("hfEmployeeId");
+                return int.Parse(hfEmployeeId.Value);
+            }
         }
 
         public double Salary
         {
-            get { throw new NotImplementedException(); }
+            get 
+            {
+                TextBox tbSalary = (TextBox)gvEmployeeList.Rows[gvEmployeeList.EditIndex].FindControl("tbSalary");
+                return double.Parse(tbSalary.Text);
+            }
         }
     }
 }
