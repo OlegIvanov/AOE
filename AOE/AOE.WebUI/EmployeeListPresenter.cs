@@ -44,6 +44,7 @@ namespace AOE.WebUI
                 EmployeeId = _employeeListView.EmployeeId,
                 Salary = _employeeListView.Salary
             };
+            _employeeService.UpdateEmployee(employeeUpdateRequest);
         }
     }
 }

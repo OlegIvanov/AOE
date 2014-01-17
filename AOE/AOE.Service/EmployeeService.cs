@@ -25,5 +25,9 @@ namespace AOE.Service
             EmployeeListResponse employeeListResponse = _employeeRepository.GetEmployeeList(employeeListRequest);
             return employeeListResponse;
         }
+
+        public void UpdateEmployee(EmployeeUpdateRequest employeeUpdateRequest)
+        { 
+        }
     }
 }
