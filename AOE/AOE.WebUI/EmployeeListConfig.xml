@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <Config>
-  <DataSource type="Database" />
+  <DataSource type="Webservice" />
   <PageSize>3</PageSize>
   <IsEditable>true</IsEditable>
 </Config>
