@@ -27,7 +27,8 @@ namespace AOE.Service
         }
 
         public void UpdateEmployee(EmployeeUpdateRequest employeeUpdateRequest)
-        { 
+        {
+            _employeeRepository.UpdateEmployee(employeeUpdateRequest);
         }
     }
 }

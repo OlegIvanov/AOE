@@ -9,5 +9,6 @@ namespace AOE.Service
     {
         EmployeeListResponse GetEmployeeList(EmployeeListRequest employeeListRequest);
         JobListResponse GetJobList();
+        void UpdateEmployee(EmployeeUpdateRequest employeeUpdateRequest);
     }
 }

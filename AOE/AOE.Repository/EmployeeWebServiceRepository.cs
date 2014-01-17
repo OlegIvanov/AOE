@@ -24,5 +24,10 @@ namespace AOE.Repository
         {
             throw new NotImplementedException();
         }
+
+        public void UpdateEmployee(EmployeeUpdateRequest employeeUpdateRequest)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

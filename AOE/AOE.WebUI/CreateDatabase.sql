@@ -113,3 +113,17 @@ GO
 CREATE PROCEDURE GetJobList
 AS
 SELECT * FROM Jobs
+
+GO
+CREATE PROCEDURE UpdateEmployee
+(
+	@EmployeeId				INT,
+	@Salary					FLOAT
+)
+AS
+UPDATE
+	Employees
+SET
+	Employees.Salary = @Salary
+WHERE
+	Employees.EmployeeId = @EmployeeId

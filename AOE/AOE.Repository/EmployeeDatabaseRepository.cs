@@ -74,6 +74,19 @@ namespace AOE.Repository
             }
         }
 
+        public void UpdateEmployee(EmployeeUpdateRequest employeeUpdateRequest)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                SqlCommand command = new SqlCommand("UpdateEmployee", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@EmployeeId", SqlDbType.Int).Value = employeeUpdateRequest.EmployeeId;
+                command.Parameters.Add("@Salary", SqlDbType.Float).Value = employeeUpdateRequest.Salary;
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
         private string GetSortExpression(SortColumn sortColumn, Service.SortOrder sortOrder)
         {
             StringBuilder sortExpression = new StringBuilder();
