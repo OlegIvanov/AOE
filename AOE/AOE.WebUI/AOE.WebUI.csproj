@@ -63,7 +63,7 @@
     <Content Include="CreateDatabase.sql" />
     <Content Include="Default.aspx" />
     <Content Include="EmployeeList.ascx" />
-    <Content Include="EmployeeListConfig.xml">
+    <Content Include="EmployeeListControlConfig.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.config">
