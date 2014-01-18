@@ -42,7 +42,7 @@ namespace AOE.Service
             return new EmployeeViewModel() 
             { 
                 Id = employee.Id,
-                FullName = employee.FullName,
+                FullName = string.Format("{0} {1}",employee.LastName, employee.FirstName),
                 Salary = string.Format("{0:0.00}", employee.Salary)
             };
         }

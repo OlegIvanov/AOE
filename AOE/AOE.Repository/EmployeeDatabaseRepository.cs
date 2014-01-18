@@ -58,7 +58,8 @@ namespace AOE.Repository
                     employees.Add(new Employee() 
                     {
                         Id = (int)reader["EmployeeId"],
-                        FullName = (string)reader["FullName"],
+                        FirstName = (string)reader["FirstName"],
+                        LastName = (string)reader["LastName"],
                         Salary = (double)reader["Salary"]
                     });
                 }
