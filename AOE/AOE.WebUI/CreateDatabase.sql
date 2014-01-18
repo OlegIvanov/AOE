@@ -77,36 +77,29 @@ AS
 SELECT * FROM
 (
 	SELECT
-		EmployeeId,
-		FullName,
-		Salary,
-		ROW_NUMBER() OVER (ORDER BY 
-			CASE WHEN @SortExpression = 'FullName_Ascending'
-				THEN FullName
-			END ASC,
-			CASE WHEN @SortExpression = 'FullName_Descending'
-				THEN FullName
-			END DESC,
-			CASE WHEN @SortExpression = 'Salary_Ascending'
-				THEN Salary
-			END ASC,
-			CASE WHEN @SortExpression = 'Salary_Descending'
-				THEN Salary
-			END DESC) AS RowNumber
+		Employees.EmployeeId,
+		Employees.FirstName,
+		Employees.LastName,
+		Employees.Salary,
+		ROW_NUMBER() OVER 
+		(
+			ORDER BY
+				CASE WHEN @SortExpression = 'FullName_Ascending'
+				THEN LastName END ASC, FirstName ASC,
+				CASE WHEN @SortExpression = 'FullName_Descending'
+				THEN LastName END DESC, FirstName DESC,
+				CASE WHEN @SortExpression = 'Salary_Ascending'
+				THEN Salary END ASC,
+				CASE WHEN @SortExpression = 'Salary_Descending'
+				THEN Salary END DESC
+		) AS RowNumber
 	FROM
-	(
-		SELECT
-			Employees.EmployeeId,
-			Employees.FirstName + SPACE(1) + Employees.LastName AS FullName,
-			Employees.Salary
-		FROM
-			Employees
-		WHERE
-			Employees.JobId = @JobId
-	) AS Temp
+		Employees
+	WHERE
+		Employees.JobId = @JobId
 ) AS Temp
 WHERE
-	RowNumber BETWEEN (@PageIndex * @PageSize + 1) AND ((@PageIndex + 1) * @PageSize)
+	Temp.RowNumber BETWEEN (@PageIndex * @PageSize + 1) AND ((@PageIndex + 1) * @PageSize)
 SET @EmployeeVirtualCount = (SELECT COUNT(*) FROM Employees WHERE Employees.JobId = @JobId)
 
 GO
