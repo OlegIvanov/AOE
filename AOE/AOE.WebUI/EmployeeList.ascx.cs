@@ -1,13 +1,9 @@
 ﻿using AOE.Presentation;
-using AOE.Repository;
 using AOE.Service;
-using StructureMap;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Text;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -162,10 +158,10 @@ namespace AOE.WebUI
                 sortExpression.Append("_");
                 switch (sortOrder)
                 {
-                    case Service.SortOrder.Ascending:
+                    case SortOrder.Ascending:
                         sortExpression.Append("Ascending");
                         break;
-                    case Service.SortOrder.Descending:
+                    case SortOrder.Descending:
                         sortExpression.Append("Descending");
                         break;
                 }
