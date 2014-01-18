@@ -43,7 +43,7 @@ namespace AOE.Service
             { 
                 Id = employee.Id,
                 FullName = employee.FullName,
-                Salary = employee.Salary.ToString()
+                Salary = string.Format("{0:0.00}", employee.Salary)
             };
         }
     }
