@@ -172,16 +172,6 @@ namespace AOE.WebUI
             }
         }
 
-        public SortColumn SortColumn
-        {
-            get { return (SortColumn)ViewState["SortColumn"]; }
-        }
-
-        public SortOrder SortOrder
-        {
-            get { return (SortOrder)ViewState["SortOrder"]; }
-        }
-
         public int PageIndex
         {
             get { return gvEmployeeList.PageIndex; }
