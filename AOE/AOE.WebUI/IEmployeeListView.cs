@@ -12,8 +12,7 @@ namespace AOE.WebUI
         void DisplayJobList(List<Job> jobs);
         void DisplayEmployeeList(List<Employee> employees, int employeeVirtualCount);
         int JobId { get; }
-        SortColumn SortColumn { get; }
-        SortOrder SortOrder { get; }
+        string SortExpression { get; }
         int PageIndex { get; }
         int PageSize { get; }
         int EmployeeId { get; }

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -139,6 +140,36 @@ namespace AOE.WebUI
         public int JobId
         {
             get { return int.Parse(ddlJobList.SelectedValue); }
+        }
+
+        public string SortExpression
+        {
+            get 
+            {
+                SortColumn sortColumn = (SortColumn)ViewState["SortColumn"];
+                SortOrder sortOrder = (SortOrder)ViewState["SortOrder"];
+                StringBuilder sortExpression = new StringBuilder();
+                switch (sortColumn)
+                {
+                    case SortColumn.FullName:
+                        sortExpression.Append("FullName");
+                        break;
+                    case SortColumn.Salary:
+                        sortExpression.Append("Salary");
+                        break;
+                }
+                sortExpression.Append("_");
+                switch (sortOrder)
+                {
+                    case Service.SortOrder.Ascending:
+                        sortExpression.Append("Ascending");
+                        break;
+                    case Service.SortOrder.Descending:
+                        sortExpression.Append("Descending");
+                        break;
+                }
+                return sortExpression.ToString();
+            }
         }
 
         public SortColumn SortColumn

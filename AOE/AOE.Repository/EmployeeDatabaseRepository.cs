@@ -49,7 +49,7 @@ namespace AOE.Repository
                 SqlCommand command = new SqlCommand("GetEmployeeList", connection);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@JobId", SqlDbType.Int).Value = employeeListRequest.JobId;
-                command.Parameters.Add("@SortExpression", SqlDbType.NVarChar, 50).Value = GetSortExpression(employeeListRequest.SortColumn, employeeListRequest.SortOrder);
+                command.Parameters.Add("@SortExpression", SqlDbType.NVarChar, 50).Value = employeeListRequest.SortExpression;
                 command.Parameters.Add("@PageIndex", SqlDbType.Int).Value = employeeListRequest.PageIndex;
                 command.Parameters.Add("@PageSize", SqlDbType.Int).Value = employeeListRequest.PageSize;
                 command.Parameters.Add("@EmployeeVirtualCount", SqlDbType.Int).Direction = ParameterDirection.Output;
@@ -85,31 +85,6 @@ namespace AOE.Repository
                 connection.Open();
                 command.ExecuteNonQuery();
             }
-        }
-
-        private string GetSortExpression(SortColumn sortColumn, Service.SortOrder sortOrder)
-        {
-            StringBuilder sortExpression = new StringBuilder();
-            switch (sortColumn)
-            {
-                case SortColumn.FullName:
-                    sortExpression.Append("FullName");
-                    break;
-                case SortColumn.Salary:
-                    sortExpression.Append("Salary");
-                    break;
-            }
-            sortExpression.Append("_");
-            switch (sortOrder)
-            { 
-                case Service.SortOrder.Ascending:
-                    sortExpression.Append("Ascending");
-                    break;
-                case Service.SortOrder.Descending:
-                    sortExpression.Append("Descending");
-                    break;
-            }
-            return sortExpression.ToString();
         }
     }
 }

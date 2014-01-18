@@ -28,8 +28,7 @@ namespace AOE.WebUI
             EmployeeListRequest employeeListRequest = new EmployeeListRequest() 
             { 
                 JobId = _employeeListView.JobId,
-                SortColumn = _employeeListView.SortColumn,
-                SortOrder = _employeeListView.SortOrder,
+                SortExpression = _employeeListView.SortExpression,
                 PageSize = _employeeListView.PageSize,
                 PageIndex = _employeeListView.PageIndex
             };

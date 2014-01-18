@@ -63,8 +63,12 @@
     <Content Include="CreateDatabase.sql" />
     <Content Include="Default.aspx" />
     <Content Include="EmployeeList.ascx" />
-    <Content Include="EmployeeListConfig.xml" />
-    <Content Include="Web.config" />
+    <Content Include="EmployeeListConfig.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Default.aspx.cs">

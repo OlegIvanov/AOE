@@ -8,8 +8,7 @@ namespace AOE.Service
     public class EmployeeListRequest
     {
         public int JobId { get; set; }
-        public SortColumn SortColumn { get; set; }
-        public SortOrder SortOrder { get; set; }
+        public string SortExpression { get; set; }
         public int PageSize { get; set; }
         public int PageIndex { get; set; }
     }

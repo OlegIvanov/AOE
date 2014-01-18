@@ -17,7 +17,7 @@ namespace AOE.Repository
 
         public JobListResponse GetJobList()
         {
-            var employeeWebServiceProxy = new EmployeeWebService.EmployeeWebService();
+            var employeeWebServiceProxy = new ProxyNamespace.EmployeeWebService();
             var jobListResponseProxy = employeeWebServiceProxy.GetJobList();
             JobListResponse jobListResponse = new JobListResponse() 
             { 
@@ -36,37 +36,14 @@ namespace AOE.Repository
 
         public EmployeeListResponse GetEmployeeList(EmployeeListRequest employeeListRequest)
         {
-            var employeeWebServiceProxy = new EmployeeWebService.EmployeeWebService();
-            var employeeListRequestProxy = new EmployeeWebService.EmployeeListRequest() 
+            var employeeWebServiceProxy = new ProxyNamespace.EmployeeWebService();
+            var employeeListRequestProxy = new ProxyNamespace.EmployeeListRequest() 
             { 
                 JobId = employeeListRequest.JobId,
+                SortExpression = employeeListRequest.SortExpression,
                 PageIndex = employeeListRequest.PageIndex,
-                PageSize = employeeListRequest.PageSize,
+                PageSize = employeeListRequest.PageSize
             };
-            switch (employeeListRequest.SortColumn)
-            { 
-                case SortColumn.None:
-                    employeeListRequestProxy.SortColumn = EmployeeWebService.SortColumn.None;
-                    break;
-                case SortColumn.FullName:
-                    employeeListRequestProxy.SortColumn = EmployeeWebService.SortColumn.FullName;
-                    break;
-                case SortColumn.Salary:
-                    employeeListRequestProxy.SortColumn = EmployeeWebService.SortColumn.Salary;
-                    break;
-            }
-            switch (employeeListRequest.SortOrder)
-            {
-                case SortOrder.None:
-                    employeeListRequestProxy.SortOrder = EmployeeWebService.SortOrder.None;
-                    break;
-                case SortOrder.Ascending:
-                    employeeListRequestProxy.SortOrder = EmployeeWebService.SortOrder.Ascending;
-                    break;
-                case SortOrder.Descending:
-                    employeeListRequestProxy.SortOrder = EmployeeWebService.SortOrder.Descending;
-                    break;
-            }
             var employeeListResponseProxy = employeeWebServiceProxy.GetEmployeeList(employeeListRequestProxy);
             EmployeeListResponse employeeListResponse = new EmployeeListResponse()
             {
@@ -87,8 +64,8 @@ namespace AOE.Repository
 
         public void UpdateEmployee(EmployeeUpdateRequest employeeUpdateRequest)
         {
-            var employeeWebServiceProxy = new EmployeeWebService.EmployeeWebService();
-            var employeeUpdateRequestProxy = new EmployeeWebService.EmployeeUpdateRequest()
+            var employeeWebServiceProxy = new ProxyNamespace.EmployeeWebService();
+            var employeeUpdateRequestProxy = new ProxyNamespace.EmployeeUpdateRequest()
             {
                 EmployeeId = employeeUpdateRequest.EmployeeId,
                 Salary = employeeUpdateRequest.Salary
