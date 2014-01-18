@@ -86,10 +86,10 @@
       <DependentUpon>EmployeeList.ascx</DependentUpon>
     </Compile>
     <Compile Include="EmployeeListControlConfig.cs" />
-    <Compile Include="EmployeeListPresenter.cs" />
     <Compile Include="DependencyResolver.cs" />
-    <Compile Include="IEmployeeListView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SortColumn.cs" />
+    <Compile Include="SortOrder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Web.Debug.config">
@@ -100,6 +100,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AOE.Model\AOE.Model.csproj">
+      <Project>{1ee64b47-d068-44e4-a73c-b314cc13f36f}</Project>
+      <Name>AOE.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AOE.Presentation\AOE.Presentation.csproj">
+      <Project>{a2af5012-ab2a-482c-9d2b-d6b05b985e4e}</Project>
+      <Name>AOE.Presentation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AOE.Repository\AOE.Repository.csproj">
       <Project>{2d44d663-af7b-40ec-afde-57c95e2b7740}</Project>
       <Name>AOE.Repository</Name>

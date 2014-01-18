@@ -7,6 +7,6 @@ namespace AOE.Service
 {
     public class JobListResponse
     {
-        public List<Job> Jobs { get; set; }
+        public List<JobViewModel> Jobs { get; set; }
     }
 }

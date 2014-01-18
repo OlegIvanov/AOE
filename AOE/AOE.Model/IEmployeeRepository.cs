@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AOE.Service
+namespace AOE.Model
 {
     public interface IEmployeeRepository
     {
-        JobListResponse GetJobList();
-        EmployeeListResponse GetEmployeeList(EmployeeListRequest employeeListRequest);
+        List<Job> GetJobList();
+        EmployeeListModel GetEmployeeList(EmployeeListRequest employeeListRequest);
         void UpdateEmployee(EmployeeUpdateRequest employeeUpdateRequest);
     }
 }

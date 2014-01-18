@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AOE.Service
 {
-    public class Job
+    public class JobViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

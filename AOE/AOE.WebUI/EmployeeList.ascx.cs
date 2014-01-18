@@ -1,4 +1,5 @@
-﻿using AOE.Repository;
+﻿using AOE.Presentation;
+using AOE.Repository;
 using AOE.Service;
 using StructureMap;
 using System;
@@ -124,13 +125,13 @@ namespace AOE.WebUI
             _presenter.DisplayEmployeeList();
         }
 
-        public void DisplayJobList(List<Job> jobs)
+        public void DisplayJobList(List<JobViewModel> jobs)
         {
             ddlJobList.DataSource = jobs;
             ddlJobList.DataBind();
         }
 
-        public void DisplayEmployeeList(List<Employee> employees, int employeeVirtualCount)
+        public void DisplayEmployeeList(List<EmployeeViewModel> employees, int employeeVirtualCount)
         {
             gvEmployeeList.VirtualItemCount = employeeVirtualCount;
             gvEmployeeList.DataSource = employees;

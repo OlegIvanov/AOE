@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace AOE.Service
+﻿namespace AOE.Model
 {
     public class EmployeeListRequest
     {

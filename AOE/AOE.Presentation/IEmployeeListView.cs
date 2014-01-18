@@ -3,14 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace AOE.WebUI
+namespace AOE.Presentation
 {
     public interface IEmployeeListView
     {
-        void DisplayJobList(List<Job> jobs);
-        void DisplayEmployeeList(List<Employee> employees, int employeeVirtualCount);
+        void DisplayJobList(List<JobViewModel> jobs);
+        void DisplayEmployeeList(List<EmployeeViewModel> employees, int employeeVirtualCount);
         int JobId { get; }
         string SortExpression { get; }
         int PageIndex { get; }

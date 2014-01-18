@@ -1,11 +1,11 @@
-﻿using AOE.Service;
+﻿using AOE.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
-using System.Data;
-using System.Data.Common;
 
 namespace AOE.Repository
 {
@@ -18,7 +18,7 @@ namespace AOE.Repository
             _connectionString = connectionString;
         }
 
-        public JobListResponse GetJobList()
+        public List<Job> GetJobList()
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -35,14 +35,11 @@ namespace AOE.Repository
                         Name = (string)reader["JobName"]
                     });
                 }
-                return new JobListResponse()
-                {
-                    Jobs = jobs
-                };
+                return jobs;
             }
         }
 
-        public EmployeeListResponse GetEmployeeList(EmployeeListRequest employeeListRequest)
+        public EmployeeListModel GetEmployeeList(EmployeeListRequest employeeListRequest)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -66,8 +63,8 @@ namespace AOE.Repository
                     });
                 }
                 reader.Close();
-                return new EmployeeListResponse() 
-                { 
+                return new EmployeeListModel() 
+                {
                     Employees = employees,
                     EmployeeVirtualCount = (int)command.Parameters["@EmployeeVirtualCount"].Value
                 };

@@ -39,17 +39,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Employee.cs" />
-    <Compile Include="EmployeeListRequest.cs" />
+    <Compile Include="EmployeeConvertingExtensionMethods.cs" />
     <Compile Include="EmployeeListResponse.cs" />
     <Compile Include="EmployeeService.cs" />
-    <Compile Include="EmployeeUpdateRequest.cs" />
-    <Compile Include="IEmployeeRepository.cs" />
-    <Compile Include="Job.cs" />
+    <Compile Include="EmployeeViewModel.cs" />
     <Compile Include="JobListResponse.cs" />
+    <Compile Include="JobViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SortColumn.cs" />
-    <Compile Include="SortOrder.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AOE.Model\AOE.Model.csproj">
+      <Project>{1ee64b47-d068-44e4-a73c-b314cc13f36f}</Project>
+      <Name>AOE.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

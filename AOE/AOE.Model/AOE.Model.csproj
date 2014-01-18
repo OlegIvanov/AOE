@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2D44D663-AF7B-40EC-AFDE-57C95E2B7740}</ProjectGuid>
+    <ProjectGuid>{1EE64B47-D068-44E4-A73C-B314CC13F36F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AOE.Repository</RootNamespace>
-    <AssemblyName>AOE.Repository</AssemblyName>
+    <RootNamespace>AOE.Model</RootNamespace>
+    <AssemblyName>AOE.Model</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,21 +32,20 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EmployeeDatabaseRepository.cs" />
+    <Compile Include="Employee.cs" />
+    <Compile Include="EmployeeListModel.cs" />
+    <Compile Include="EmployeeListRequest.cs" />
+    <Compile Include="EmployeeService.cs" />
+    <Compile Include="EmployeeUpdateRequest.cs" />
+    <Compile Include="IEmployeeRepository.cs" />
+    <Compile Include="Job.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AOE.Model\AOE.Model.csproj">
-      <Project>{1ee64b47-d068-44e4-a73c-b314cc13f36f}</Project>
-      <Name>AOE.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

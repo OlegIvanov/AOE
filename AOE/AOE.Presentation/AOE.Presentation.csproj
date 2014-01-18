@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2D44D663-AF7B-40EC-AFDE-57C95E2B7740}</ProjectGuid>
+    <ProjectGuid>{A2AF5012-AB2A-482C-9D2B-D6B05B985E4E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AOE.Repository</RootNamespace>
-    <AssemblyName>AOE.Repository</AssemblyName>
+    <RootNamespace>AOE.Presentation</RootNamespace>
+    <AssemblyName>AOE.Presentation</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,20 +32,24 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EmployeeDatabaseRepository.cs" />
+    <Compile Include="EmployeeListPresenter.cs" />
+    <Compile Include="IEmployeeListView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AOE.Model\AOE.Model.csproj">
       <Project>{1ee64b47-d068-44e4-a73c-b314cc13f36f}</Project>
       <Name>AOE.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AOE.Service\AOE.Service.csproj">
+      <Project>{9300a212-8f95-49c4-873a-7d4c7668675c}</Project>
+      <Name>AOE.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

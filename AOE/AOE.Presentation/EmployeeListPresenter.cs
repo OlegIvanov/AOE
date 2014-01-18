@@ -1,17 +1,18 @@
-﻿using AOE.Service;
+﻿using AOE.Model;
+using AOE.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace AOE.WebUI
+namespace AOE.Presentation
 {
     public class EmployeeListPresenter
     {
         private IEmployeeListView _employeeListView;
-        private EmployeeService _employeeService;
+        private Service.EmployeeService _employeeService;
 
-        public EmployeeListPresenter(IEmployeeListView employeeListView, EmployeeService employeeService)
+        public EmployeeListPresenter(IEmployeeListView employeeListView, Service.EmployeeService employeeService)
         {
             _employeeListView = employeeListView;
             _employeeService = employeeService;
