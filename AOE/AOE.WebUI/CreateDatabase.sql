@@ -84,14 +84,30 @@ SELECT * FROM
 		ROW_NUMBER() OVER 
 		(
 			ORDER BY
-				CASE WHEN @SortExpression = 'FullName_Ascending'
-				THEN LastName END ASC, FirstName ASC,
-				CASE WHEN @SortExpression = 'FullName_Descending'
-				THEN LastName END DESC, FirstName DESC,
-				CASE WHEN @SortExpression = 'Salary_Ascending'
-				THEN Salary END ASC,
-				CASE WHEN @SortExpression = 'Salary_Descending'
-				THEN Salary END DESC
+				CASE @SortExpression
+					WHEN 'FullName_Ascending'
+					THEN LastName
+				END ASC,
+				CASE @SortExpression
+					WHEN 'FullName_Ascending'
+					THEN FirstName
+				END ASC,
+				CASE @SortExpression
+					WHEN 'FullName_Descending'
+					THEN LastName
+				END DESC,
+				CASE @SortExpression
+					WHEN 'FullName_Descending'
+					THEN FirstName
+				END DESC,
+				CASE @SortExpression 
+					WHEN 'Salary_Ascending'
+					THEN Salary 
+				END ASC,
+				CASE @SortExpression 
+					WHEN 'Salary_Descending'
+					THEN Salary 
+				END DESC
 		) AS RowNumber
 	FROM
 		Employees
