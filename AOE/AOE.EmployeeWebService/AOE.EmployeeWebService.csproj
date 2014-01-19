@@ -52,6 +52,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Employees.mdf" />
+    <Content Include="App_Data\Employees_log.ldf">
+      <DependentUpon>Employees.mdf</DependentUpon>
+    </Content>
     <Content Include="EmployeeWebService.asmx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -62,9 +66,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

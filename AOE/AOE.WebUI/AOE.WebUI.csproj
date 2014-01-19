@@ -60,6 +60,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Employees.mdf" />
+    <Content Include="App_Data\Employees_log.ldf">
+      <DependentUpon>Employees.mdf</DependentUpon>
+    </Content>
     <Content Include="CreateDatabase.sql" />
     <Content Include="Default.aspx" />
     <Content Include="EmployeeList.ascx" />
