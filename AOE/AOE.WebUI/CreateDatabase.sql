@@ -65,7 +65,7 @@ INSERT INTO Employees Values (15, 3, 'Alexander', 'Gleb', 9.90)
 INSERT INTO Employees Values (16, 3, 'Pavlik', 'Morozov', 200.20)
 
 GO
-CREATE PROCEDURE GetJobList
+CREATE PROCEDURE GetAllJobs
 AS
 SELECT 
 	* 
@@ -73,7 +73,7 @@ FROM
 	Jobs
 
 GO
-CREATE PROCEDURE GetEmployeeList
+CREATE PROCEDURE GetEmployeesByQuery
 (
 	@JobId					INT,
 	@SortExpression			NVARCHAR(50),

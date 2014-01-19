@@ -22,7 +22,7 @@ namespace AOE.Repository
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                SqlCommand command = new SqlCommand("GetJobList", connection);
+                SqlCommand command = new SqlCommand("GetAllJobs", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
                 connection.Open();
@@ -38,7 +38,7 @@ namespace AOE.Repository
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                SqlCommand command = new SqlCommand("GetEmployeeList", connection);
+                SqlCommand command = new SqlCommand("GetEmployeesByQuery", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.Add("@JobId", SqlDbType.Int).Value = employeeQuery.JobId;
