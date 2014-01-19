@@ -1,5 +1,6 @@
 ﻿using AOE.Presentation;
 using AOE.Service;
+using AOE.Service.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -127,9 +128,9 @@ namespace AOE.WebUI
             ddlJobList.DataBind();
         }
 
-        public void DisplayEmployeeList(List<EmployeeViewModel> employees, int employeeVirtualCount)
+        public void DisplayEmployeeList(List<EmployeeViewModel> employees, int employeeCountByJobId)
         {
-            gvEmployeeList.VirtualItemCount = employeeVirtualCount;
+            gvEmployeeList.VirtualItemCount = employeeCountByJobId;
             gvEmployeeList.DataSource = employees;
             gvEmployeeList.DataBind();
         }

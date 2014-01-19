@@ -1,4 +1,5 @@
 ﻿using AOE.Model;
+using AOE.Service.Messages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace AOE.Service
         {
             JobListResponse jobListResponse = new JobListResponse();
 
-            List<Job> jobs = _employeeRepository.GetJobList();
+            List<Job> jobs = _employeeRepository.FindAllJobs();
 
             jobListResponse.Jobs = jobs.ConvertToJobListViewModel();
 
@@ -30,8 +31,16 @@ namespace AOE.Service
         {
             EmployeeListResponse employeeListResponse = new EmployeeListResponse();
 
-            List<Employee> employees = _employeeRepository.GetEmployeeList(employeeListRequest);
-            int employeeCountByJobId = _employeeRepository.GetEmployeeCountByJobId(employeeListRequest.JobId);
+            EmployeeQuery employeeQuery = new EmployeeQuery
+            {
+                JobId = employeeListRequest.JobId,
+                SortExpression = employeeListRequest.SortExpression,
+                PageIndex = employeeListRequest.PageIndex,
+                PageSize = employeeListRequest.PageSize
+            };
+            List<Employee> employees = _employeeRepository.FindBy(employeeQuery);
+
+            int employeeCountByJobId = _employeeRepository.GetCountByJobId(employeeListRequest.JobId);
 
             employeeListResponse.Employees = employees.ConvertToEmployeeListViewModel();
             employeeListResponse.EmployeeCountByJobId = employeeCountByJobId;
@@ -39,9 +48,13 @@ namespace AOE.Service
             return employeeListResponse;
         }
 
-        public void UpdateEmployee(EmployeeUpdateRequest employeeUpdateRequest)
+        public void UpdateEmployeeSalary(EmployeeUpdateSalaryRequest employeeUpdateSalaryRequest)
         {
-            _employeeRepository.UpdateEmployee(employeeUpdateRequest);
+            Employee employee = _employeeRepository.FindBy(employeeUpdateSalaryRequest.EmployeeId);
+
+            employee.Salary = employeeUpdateSalaryRequest.Salary;
+
+            _employeeRepository.Update(employee);
         }
     }
 }

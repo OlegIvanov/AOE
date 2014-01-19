@@ -1,4 +1,4 @@
-﻿namespace AOE.Model
+﻿namespace AOE.Service.Messages
 {
     public class EmployeeListRequest
     {

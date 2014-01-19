@@ -1,9 +1,7 @@
-﻿using System;
+﻿using AOE.Service.ViewModels;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace AOE.Service
+namespace AOE.Service.Messages
 {
     public class JobListResponse
     {

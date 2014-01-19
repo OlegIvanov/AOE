@@ -18,7 +18,7 @@ namespace AOE.Repository
             _connectionString = connectionString;
         }
 
-        public List<Job> GetJobList()
+        public List<Job> FindAllJobs()
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -34,20 +34,20 @@ namespace AOE.Repository
             }
         }
 
-        public List<Employee> GetEmployeeList(EmployeeListRequest employeeListRequest)
+        public List<Employee> FindBy(EmployeeQuery employeeQuery)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 SqlCommand command = new SqlCommand("GetEmployeeList", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
-                command.Parameters.Add("@JobId", SqlDbType.Int).Value = employeeListRequest.JobId;
-                command.Parameters.Add("@SortExpression", SqlDbType.NVarChar, 50).Value = employeeListRequest.SortExpression;
-                command.Parameters.Add("@PageIndex", SqlDbType.Int).Value = employeeListRequest.PageIndex;
-                command.Parameters.Add("@PageSize", SqlDbType.Int).Value = employeeListRequest.PageSize;
+                command.Parameters.Add("@JobId", SqlDbType.Int).Value = employeeQuery.JobId;
+                command.Parameters.Add("@SortExpression", SqlDbType.NVarChar, 50).Value = employeeQuery.SortExpression;
+                command.Parameters.Add("@PageIndex", SqlDbType.Int).Value = employeeQuery.PageIndex;
+                command.Parameters.Add("@PageSize", SqlDbType.Int).Value = employeeQuery.PageSize;
 
                 connection.Open();
-                
+
                 using (IDataReader reader = command.ExecuteReader())
                 {
                     return GetEmployeeCollectionFromReader(reader);
@@ -55,7 +55,7 @@ namespace AOE.Repository
             }
         }
 
-        public int GetEmployeeCountByJobId(int jobId)
+        public int GetCountByJobId(int jobId)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -70,15 +70,35 @@ namespace AOE.Repository
             }
         }
 
-        public void UpdateEmployee(EmployeeUpdateRequest employeeUpdateRequest)
+        public Employee FindBy(int employeeId)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                SqlCommand command = new SqlCommand("GetEmployeeByEmployeeId", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("EmployeeId", SqlDbType.Int).Value = employeeId;
+
+                connection.Open();
+
+                using (IDataReader reader = command.ExecuteReader())
+                { 
+                    return GetEmployeeCollectionFromReader(reader).First();
+                }
+            }
+        }
+
+        public void Update(Employee employee)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 SqlCommand command = new SqlCommand("UpdateEmployee", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
-                command.Parameters.Add("@EmployeeId", SqlDbType.Int).Value = employeeUpdateRequest.EmployeeId;
-                command.Parameters.Add("@Salary", SqlDbType.Float).Value = employeeUpdateRequest.Salary;
+                command.Parameters.Add("@EmployeeId", SqlDbType.Int).Value = employee.Id;
+                command.Parameters.Add("@FirstName", SqlDbType.NVarChar, 100).Value = employee.FirstName;
+                command.Parameters.Add("@LastName", SqlDbType.NVarChar, 100).Value = employee.LastName;
+                command.Parameters.Add("@Salary", SqlDbType.Float).Value = employee.Salary;
 
                 connection.Open();
 

@@ -1,4 +1,5 @@
 ﻿using AOE.Model;
+using AOE.Service.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

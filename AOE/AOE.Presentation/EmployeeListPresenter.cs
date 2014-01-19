@@ -1,5 +1,6 @@
 ﻿using AOE.Model;
 using AOE.Service;
+using AOE.Service.Messages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,13 +43,13 @@ namespace AOE.Presentation
 
         public void UpdateEmployee()
         {
-            EmployeeUpdateRequest employeeUpdateRequest = new EmployeeUpdateRequest
+            EmployeeUpdateSalaryRequest employeeUpdateRequest = new EmployeeUpdateSalaryRequest
             {
                 EmployeeId = _employeeListView.EmployeeId,
                 Salary = _employeeListView.Salary
             };
 
-            _employeeService.UpdateEmployee(employeeUpdateRequest);
+            _employeeService.UpdateEmployeeSalary(employeeUpdateRequest);
         }
     }
 }

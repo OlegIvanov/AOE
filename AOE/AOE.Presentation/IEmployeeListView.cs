@@ -1,4 +1,5 @@
 ﻿using AOE.Service;
+using AOE.Service.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace AOE.Presentation
     public interface IEmployeeListView
     {
         void DisplayJobList(List<JobViewModel> jobs);
-        void DisplayEmployeeList(List<EmployeeViewModel> employees, int employeeVirtualCount);
+        void DisplayEmployeeList(List<EmployeeViewModel> employees, int employeeCountByJobId);
         int JobId { get; }
         string SortExpression { get; }
         int PageIndex { get; }

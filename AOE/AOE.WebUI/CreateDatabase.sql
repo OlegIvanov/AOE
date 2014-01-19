@@ -140,15 +140,32 @@ WHERE
 	Employees.JobId = @JobId
 
 GO
+CREATE PROCEDURE GetEmployeeByEmployeeId
+(
+	@EmployeeId				INT
+)
+AS
+SELECT
+	*
+FROM
+	Employees
+WHERE
+	Employees.EmployeeId = @EmployeeId
+
+GO
 CREATE PROCEDURE UpdateEmployee
 (
 	@EmployeeId				INT,
+	@FirstName				NVARCHAR(100),
+	@LastName				NVARCHAR(100),
 	@Salary					FLOAT
 )
 AS
 UPDATE
 	Employees
 SET
+	Employees.FirstName = @FirstName,
+	Employees.LastName = @LastName,
 	Employees.Salary = @Salary
 WHERE
 	Employees.EmployeeId = @EmployeeId

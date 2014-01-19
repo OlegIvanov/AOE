@@ -40,11 +40,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmployeeConvertingExtensionMethods.cs" />
-    <Compile Include="EmployeeListResponse.cs" />
+    <Compile Include="Messages\EmployeeListResponse.cs" />
     <Compile Include="EmployeeService.cs" />
-    <Compile Include="EmployeeViewModel.cs" />
-    <Compile Include="JobListResponse.cs" />
-    <Compile Include="JobViewModel.cs" />
+    <Compile Include="ViewModels\EmployeeViewModel.cs" />
+    <Compile Include="Messages\JobListResponse.cs" />
+    <Compile Include="ViewModels\JobViewModel.cs" />
+    <Compile Include="Messages\EmployeeListRequest.cs" />
+    <Compile Include="Messages\EmployeeUpdateSalaryRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -53,6 +55,7 @@
       <Name>AOE.Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

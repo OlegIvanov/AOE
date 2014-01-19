@@ -1,6 +1,6 @@
-﻿namespace AOE.Model
+﻿namespace AOE.Service.Messages
 {
-    public class EmployeeUpdateRequest
+    public class EmployeeUpdateSalaryRequest
     {
         public int EmployeeId { get; set; }
         public double Salary { get; set; }
