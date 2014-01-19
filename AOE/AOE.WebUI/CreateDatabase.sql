@@ -94,27 +94,27 @@ FROM
 		(
 			ORDER BY
 				CASE @SortExpression
-					WHEN 'FullName_Ascending'
+					WHEN 'FullNameAscending'
 					THEN LastName
 				END ASC,
 				CASE @SortExpression
-					WHEN 'FullName_Ascending'
+					WHEN 'FullNameAscending'
 					THEN FirstName
 				END ASC,
 				CASE @SortExpression
-					WHEN 'FullName_Descending'
+					WHEN 'FullNameDescending'
 					THEN LastName
 				END DESC,
 				CASE @SortExpression
-					WHEN 'FullName_Descending'
+					WHEN 'FullNameDescending'
 					THEN FirstName
 				END DESC,
 				CASE @SortExpression 
-					WHEN 'Salary_Ascending'
+					WHEN 'SalaryAscending'
 					THEN Salary 
 				END ASC,
 				CASE @SortExpression 
-					WHEN 'Salary_Descending'
+					WHEN 'SalaryDescending'
 					THEN Salary 
 				END DESC
 		) AS RowNumber

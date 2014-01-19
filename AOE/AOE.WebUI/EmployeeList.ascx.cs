@@ -72,18 +72,26 @@ namespace AOE.WebUI
                 switch (e.CommandName) 
                 {
                     case "SortByFullName":
-                        nextSortColumn = SortColumn.FullName;
-                        break;
+                        {
+                            nextSortColumn = SortColumn.FullName;
+                            break;
+                        }
                     case "SortBySalary":
-                        nextSortColumn = SortColumn.Salary;
-                        break;
+                        {
+                            nextSortColumn = SortColumn.Salary;
+                            break;
+                        }
                 }
                 if (currentSortColumn == nextSortColumn)
                 {
                     if (currentSortOrder == SortOrder.Ascending)
+                    {
                         ViewState["SortOrder"] = SortOrder.Descending;
+                    }
                     else
+                    {
                         ViewState["SortOrder"] = SortOrder.Ascending;
+                    }
                 }
                 else
                 {
@@ -151,21 +159,28 @@ namespace AOE.WebUI
                 switch (sortColumn)
                 {
                     case SortColumn.FullName:
-                        sortExpression.Append("FullName");
-                        break;
+                        {
+                            sortExpression.Append("FullName");
+                            break;
+                        }
                     case SortColumn.Salary:
-                        sortExpression.Append("Salary");
-                        break;
+                        {
+                            sortExpression.Append("Salary");
+                            break;
+                        }
                 }
-                sortExpression.Append("_");
                 switch (sortOrder)
                 {
                     case SortOrder.Ascending:
-                        sortExpression.Append("Ascending");
-                        break;
+                        {
+                            sortExpression.Append("Ascending");
+                            break;
+                        }
                     case SortOrder.Descending:
-                        sortExpression.Append("Descending");
-                        break;
+                        {
+                            sortExpression.Append("Descending");
+                            break;
+                        }
                 }
                 return sortExpression.ToString();
             }
