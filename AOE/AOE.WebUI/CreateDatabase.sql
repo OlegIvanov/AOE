@@ -65,16 +65,25 @@ INSERT INTO Employees Values (15, 3, 'Alexander', 'Gleb', 9.90)
 INSERT INTO Employees Values (16, 3, 'Pavlik', 'Morozov', 200.20)
 
 GO
+CREATE PROCEDURE GetJobList
+AS
+SELECT 
+	* 
+FROM 
+	Jobs
+
+GO
 CREATE PROCEDURE GetEmployeeList
 (
 	@JobId					INT,
 	@SortExpression			NVARCHAR(50),
 	@PageIndex				INT,
-	@PageSize				INT,
-	@EmployeeVirtualCount	INT OUTPUT
+	@PageSize				INT
 )
 AS
-SELECT * FROM
+SELECT 
+	* 
+FROM
 (
 	SELECT
 		Employees.EmployeeId,
@@ -116,12 +125,19 @@ SELECT * FROM
 ) AS Temp
 WHERE
 	Temp.RowNumber BETWEEN (@PageIndex * @PageSize + 1) AND ((@PageIndex + 1) * @PageSize)
-SET @EmployeeVirtualCount = (SELECT COUNT(*) FROM Employees WHERE Employees.JobId = @JobId)
 
 GO
-CREATE PROCEDURE GetJobList
+CREATE PROCEDURE GetEmployeeCountByJobId
+(
+	@JobId					INT
+)
 AS
-SELECT * FROM Jobs
+SELECT 
+	COUNT(*) 
+FROM 
+	Employees 
+WHERE 
+	Employees.JobId = @JobId
 
 GO
 CREATE PROCEDURE UpdateEmployee

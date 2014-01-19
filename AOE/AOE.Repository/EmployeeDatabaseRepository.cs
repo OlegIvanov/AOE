@@ -34,7 +34,7 @@ namespace AOE.Repository
             }
         }
 
-        public EmployeeListModel GetEmployeeList(EmployeeListRequest employeeListRequest)
+        public List<Employee> GetEmployeeList(EmployeeListRequest employeeListRequest)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -45,21 +45,28 @@ namespace AOE.Repository
                 command.Parameters.Add("@SortExpression", SqlDbType.NVarChar, 50).Value = employeeListRequest.SortExpression;
                 command.Parameters.Add("@PageIndex", SqlDbType.Int).Value = employeeListRequest.PageIndex;
                 command.Parameters.Add("@PageSize", SqlDbType.Int).Value = employeeListRequest.PageSize;
-                command.Parameters.Add("@EmployeeVirtualCount", SqlDbType.Int).Direction = ParameterDirection.Output;
 
                 connection.Open();
                 
-                List<Employee> employees = null;
                 using (IDataReader reader = command.ExecuteReader())
                 {
-                    employees = GetEmployeeCollectionFromReader(reader);
+                    return GetEmployeeCollectionFromReader(reader);
                 }
+            }
+        }
 
-                return new EmployeeListModel
-                {
-                    Employees = employees,
-                    EmployeeVirtualCount = (int)command.Parameters["@EmployeeVirtualCount"].Value
-                };
+        public int GetEmployeeCountByJobId(int jobId)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                SqlCommand command = new SqlCommand("GetEmployeeCountByJobId", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add("JobId", SqlDbType.Int).Value = jobId;
+
+                connection.Open();
+
+                return (int)command.ExecuteScalar();
             }
         }
 

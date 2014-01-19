@@ -8,7 +8,8 @@ namespace AOE.Model
     public interface IEmployeeRepository
     {
         List<Job> GetJobList();
-        EmployeeListModel GetEmployeeList(EmployeeListRequest employeeListRequest);
+        List<Employee> GetEmployeeList(EmployeeListRequest employeeListRequest);
+        int GetEmployeeCountByJobId(int JobId);
         void UpdateEmployee(EmployeeUpdateRequest employeeUpdateRequest);
     }
 }

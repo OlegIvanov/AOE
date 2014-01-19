@@ -8,33 +8,40 @@ namespace AOE.Service
 {
     public class EmployeeService
     {
-        private Model.EmployeeService _employeeService;
+        private IEmployeeRepository _employeeRepository;
 
-        public EmployeeService(Model.EmployeeService employeeService)
+        public EmployeeService(IEmployeeRepository employeeRepository)
         {
-            _employeeService = employeeService;
+            _employeeRepository = employeeRepository;
         }
 
         public JobListResponse GetJobList()
         {
             JobListResponse jobListResponse = new JobListResponse();
-            List<Job> jobs = _employeeService.GetJobList();
+
+            List<Job> jobs = _employeeRepository.GetJobList();
+
             jobListResponse.Jobs = jobs.ConvertToJobListViewModel();
+
             return jobListResponse;
         }
 
         public EmployeeListResponse GetEmployeeList(EmployeeListRequest employeeListRequest)
         {
             EmployeeListResponse employeeListResponse = new EmployeeListResponse();
-            EmployeeListModel employeeListModel = _employeeService.GetEmployeeList(employeeListRequest);
-            employeeListResponse.Employees = employeeListModel.Employees.ConvertToEmployeeListViewModel();
-            employeeListResponse.EmployeeVirtualCount = employeeListModel.EmployeeVirtualCount;
+
+            List<Employee> employees = _employeeRepository.GetEmployeeList(employeeListRequest);
+            int employeeCountByJobId = _employeeRepository.GetEmployeeCountByJobId(employeeListRequest.JobId);
+
+            employeeListResponse.Employees = employees.ConvertToEmployeeListViewModel();
+            employeeListResponse.EmployeeVirtualCount = employeeCountByJobId;
+
             return employeeListResponse;
         }
 
         public void UpdateEmployee(EmployeeUpdateRequest employeeUpdateRequest)
         {
-            _employeeService.UpdateEmployee(employeeUpdateRequest);
+            _employeeRepository.UpdateEmployee(employeeUpdateRequest);
         }
     }
 }

@@ -13,7 +13,12 @@ namespace AOE.Repository
             throw new NotImplementedException();
         }
 
-        public EmployeeListModel GetEmployeeList(EmployeeListRequest employeeListRequest)
+        public List<Employee> GetEmployeeList(EmployeeListRequest employeeListRequest)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetEmployeeCountByJobId(int JobId)
         {
             throw new NotImplementedException();
         }

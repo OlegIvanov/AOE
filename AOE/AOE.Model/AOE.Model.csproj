@@ -39,9 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Employee.cs" />
-    <Compile Include="EmployeeListModel.cs" />
     <Compile Include="EmployeeListRequest.cs" />
-    <Compile Include="EmployeeService.cs" />
     <Compile Include="EmployeeUpdateRequest.cs" />
     <Compile Include="IEmployeeRepository.cs" />
     <Compile Include="Job.cs" />
