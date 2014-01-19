@@ -128,9 +128,10 @@ namespace AOE.WebUI
             ddlJobList.DataBind();
         }
 
-        public void DisplayEmployeeList(List<EmployeeViewModel> employees, int employeeCountByJobId)
+        public void DisplayEmployeeList(List<EmployeeViewModel> employees, int employeeTotalCount)
         {
-            gvEmployeeList.VirtualItemCount = employeeCountByJobId;
+            gvEmployeeList.VirtualItemCount = employeeTotalCount;
+
             gvEmployeeList.DataSource = employees;
             gvEmployeeList.DataBind();
         }

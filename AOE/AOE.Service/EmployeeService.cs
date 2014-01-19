@@ -43,7 +43,7 @@ namespace AOE.Service
             int employeeCountByJobId = _employeeRepository.GetCountByJobId(employeeListRequest.JobId);
 
             employeeListResponse.Employees = employees.ConvertToEmployeeListViewModel();
-            employeeListResponse.EmployeeCountByJobId = employeeCountByJobId;
+            employeeListResponse.EmployeeTotalCount = employeeCountByJobId;
 
             return employeeListResponse;
         }

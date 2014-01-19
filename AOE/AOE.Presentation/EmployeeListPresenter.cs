@@ -38,7 +38,7 @@ namespace AOE.Presentation
 
             EmployeeListResponse employeeListResponse = _employeeService.GetEmployeeList(employeeListRequest);
 
-            _employeeListView.DisplayEmployeeList(employeeListResponse.Employees, employeeListResponse.EmployeeCountByJobId);
+            _employeeListView.DisplayEmployeeList(employeeListResponse.Employees, employeeListResponse.EmployeeTotalCount);
         }
 
         public void UpdateEmployee()

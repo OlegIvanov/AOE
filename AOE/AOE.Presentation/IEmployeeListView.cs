@@ -10,7 +10,7 @@ namespace AOE.Presentation
     public interface IEmployeeListView
     {
         void DisplayJobList(List<JobViewModel> jobs);
-        void DisplayEmployeeList(List<EmployeeViewModel> employees, int employeeCountByJobId);
+        void DisplayEmployeeList(List<EmployeeViewModel> employees, int employeeTotalCount);
         int JobId { get; }
         string SortExpression { get; }
         int PageIndex { get; }
