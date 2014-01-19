@@ -2,7 +2,7 @@
 
 <Config>
   <!--Possible type values: "Database", "Webservice".-->
-  <DataSource type="Webservice" />
+  <DataSource type="Webservice" url="http://localhost:7198/EmployeeWebService.asmx" />
   <PageSize>3</PageSize>
   <IsEditable>true</IsEditable>
 </Config>

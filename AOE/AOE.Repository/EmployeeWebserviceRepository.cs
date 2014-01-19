@@ -14,6 +14,7 @@ namespace AOE.Repository
         public EmployeeWebserviceRepository(string url)
         {
             _employeeWebServiceProxy = new EWS.EmployeeWebService();
+            _employeeWebServiceProxy.Url = url;
         }
 
         public List<Job> FindAllJobs()
