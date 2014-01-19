@@ -83,7 +83,7 @@ namespace AOE.Repository
 
                 using (IDataReader reader = command.ExecuteReader())
                 { 
-                    return GetEmployeeCollectionFromReader(reader).First();
+                    return GetEmployeeCollectionFromReader(reader).FirstOrDefault();
                 }
             }
         }
