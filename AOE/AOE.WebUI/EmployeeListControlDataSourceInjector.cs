@@ -7,11 +7,11 @@ namespace AOE.WebUI
 {
     public static class EmployeeListControlDataSourceInjector
     {
-        public static IContainer GetConfiguredContainer(EmployeeListControlConfig config)
+        public static IContainer GetConfiguredContainer(EmployeeListControlConfig employeeListConfig)
         {
             IContainer container = null;
 
-            switch (config.DataSource.Type)
+            switch (employeeListConfig.DataSource.Type)
             {
                 case SourceType.Database:
                     {
@@ -31,7 +31,7 @@ namespace AOE.WebUI
                             x.For<IEmployeeRepository>()
                                 .Use<EmployeeWebserviceRepository>()
                                 .Ctor<string>()
-                                .Is(config.DataSource.Url);
+                                .Is(employeeListConfig.DataSource.Url);
                         });
                         break;
                     }
