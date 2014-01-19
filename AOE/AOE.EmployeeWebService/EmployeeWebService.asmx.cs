@@ -27,9 +27,33 @@ namespace AOE.EmployeeWebService
         }
 
         [WebMethod]
-        public string HelloWorld()
+        public List<Job> GetAllJobs()
         {
-            return "Hello World";
+            return _repository.FindAllJobs();
+        }
+
+        [WebMethod]
+        public List<Employee> GetEmployeeList(EmployeeQuery employeeQuery)
+        {
+            return _repository.FindBy(employeeQuery);
+        }
+
+        [WebMethod]
+        public int GetEmployeeCountByJobId(int jobId)
+        {
+            return _repository.GetCountByJobId(jobId);
+        }
+
+        [WebMethod]
+        public Employee GetEmployeeBy(int employeeId)
+        {
+            return _repository.FindBy(employeeId);
+        }
+
+        [WebMethod]
+        public void UpdateEmployee(Employee employee)
+        {
+            _repository.Update(employee);
         }
     }
 }
