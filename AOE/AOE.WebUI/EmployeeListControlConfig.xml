@@ -2,7 +2,7 @@
 
 <Config>
   <!--Possible type values: "Database", "Webservice".-->
-  <DataSource type="Database" />
+  <DataSource type="Webservice" />
   <PageSize>3</PageSize>
   <IsEditable>true</IsEditable>
 </Config>
