@@ -39,7 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EmployeeConvertingExtensionMethods.cs" />
+    <Compile Include="EmployeeMapperExtensionMethods.cs" />
     <Compile Include="Messages\EmployeeListResponse.cs" />
     <Compile Include="EmployeeService.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />

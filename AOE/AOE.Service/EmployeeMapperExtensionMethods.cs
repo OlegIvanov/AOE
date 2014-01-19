@@ -7,7 +7,7 @@ using System.Text;
 
 namespace AOE.Service
 {
-    public static class EmployeeConvertingExtensionMethods
+    public static class EmployeeMapperExtensionMethods
     {
         public static List<JobViewModel> ConvertToJobListViewModel(this List<Job> jobs)
         {
