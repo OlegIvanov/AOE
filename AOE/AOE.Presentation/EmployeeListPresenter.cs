@@ -41,7 +41,7 @@ namespace AOE.Presentation
             _employeeListView.DisplayEmployeeList(employeeListResponse.Employees, employeeListResponse.EmployeeTotalCount);
         }
 
-        public void UpdateEmployee()
+        public void UpdateEmployeeSalary()
         {
             EmployeeUpdateSalaryRequest employeeUpdateSalaryRequest = new EmployeeUpdateSalaryRequest
             {

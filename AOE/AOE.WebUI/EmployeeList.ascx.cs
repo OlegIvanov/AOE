@@ -138,7 +138,7 @@ namespace AOE.WebUI
 
         protected void gvEmployeeList_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            _presenter.UpdateEmployee();
+            _presenter.UpdateEmployeeSalary();
 
             gvEmployeeList.EditIndex = -1;
 

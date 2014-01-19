@@ -73,6 +73,16 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AOE.Model\AOE.Model.csproj">
+      <Project>{1ee64b47-d068-44e4-a73c-b314cc13f36f}</Project>
+      <Name>AOE.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AOE.Repository\AOE.Repository.csproj">
+      <Project>{2d44d663-af7b-40ec-afde-57c95e2b7740}</Project>
+      <Name>AOE.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
