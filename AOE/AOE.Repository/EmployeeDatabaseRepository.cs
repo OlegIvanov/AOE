@@ -24,18 +24,13 @@ namespace AOE.Repository
             {
                 SqlCommand command = new SqlCommand("GetJobList", connection);
                 command.CommandType = CommandType.StoredProcedure;
+
                 connection.Open();
-                IDataReader reader = command.ExecuteReader();
-                List<Job> jobs = new List<Job>();
-                while (reader.Read())
+
+                using (IDataReader reader = command.ExecuteReader())
                 {
-                    jobs.Add(new Job()
-                    {
-                        Id = (int)reader["JobId"],
-                        Name = (string)reader["JobName"]
-                    });
+                    return GetJobCollectionFromReader(reader);
                 }
-                return jobs;
             }
         }
 
@@ -45,26 +40,22 @@ namespace AOE.Repository
             {
                 SqlCommand command = new SqlCommand("GetEmployeeList", connection);
                 command.CommandType = CommandType.StoredProcedure;
+
                 command.Parameters.Add("@JobId", SqlDbType.Int).Value = employeeListRequest.JobId;
                 command.Parameters.Add("@SortExpression", SqlDbType.NVarChar, 50).Value = employeeListRequest.SortExpression;
                 command.Parameters.Add("@PageIndex", SqlDbType.Int).Value = employeeListRequest.PageIndex;
                 command.Parameters.Add("@PageSize", SqlDbType.Int).Value = employeeListRequest.PageSize;
                 command.Parameters.Add("@EmployeeVirtualCount", SqlDbType.Int).Direction = ParameterDirection.Output;
+
                 connection.Open();
-                IDataReader reader = command.ExecuteReader();
-                List<Employee> employees = new List<Employee>();
-                while (reader.Read())
+                
+                List<Employee> employees = null;
+                using (IDataReader reader = command.ExecuteReader())
                 {
-                    employees.Add(new Employee() 
-                    {
-                        Id = (int)reader["EmployeeId"],
-                        FirstName = (string)reader["FirstName"],
-                        LastName = (string)reader["LastName"],
-                        Salary = (double)reader["Salary"]
-                    });
+                    employees = GetEmployeeCollectionFromReader(reader);
                 }
-                reader.Close();
-                return new EmployeeListModel() 
+
+                return new EmployeeListModel
                 {
                     Employees = employees,
                     EmployeeVirtualCount = (int)command.Parameters["@EmployeeVirtualCount"].Value
@@ -78,11 +69,48 @@ namespace AOE.Repository
             {
                 SqlCommand command = new SqlCommand("UpdateEmployee", connection);
                 command.CommandType = CommandType.StoredProcedure;
+
                 command.Parameters.Add("@EmployeeId", SqlDbType.Int).Value = employeeUpdateRequest.EmployeeId;
                 command.Parameters.Add("@Salary", SqlDbType.Float).Value = employeeUpdateRequest.Salary;
+
                 connection.Open();
+
                 command.ExecuteNonQuery();
             }
+        }
+
+        private List<Job> GetJobCollectionFromReader(IDataReader dataReader)
+        {
+            List<Job> jobs = new List<Job>();
+
+            while (dataReader.Read())
+            {
+                jobs.Add(new Job
+                {
+                    Id = (int)dataReader["JobId"],
+                    Name = (string)dataReader["JobName"]
+                });
+            }
+
+            return jobs;
+        }
+
+        private List<Employee> GetEmployeeCollectionFromReader(IDataReader dataReader)
+        {
+            List<Employee> employees = new List<Employee>();
+
+            while (dataReader.Read())
+            {
+                employees.Add(new Employee
+                {
+                    Id = (int)dataReader["EmployeeId"],
+                    FirstName = (string)dataReader["FirstName"],
+                    LastName = (string)dataReader["LastName"],
+                    Salary = (double)dataReader["Salary"]
+                });
+            }
+
+            return employees;
         }
     }
 }
