@@ -43,13 +43,13 @@ namespace AOE.Presentation
 
         public void UpdateEmployee()
         {
-            EmployeeUpdateSalaryRequest employeeUpdateRequest = new EmployeeUpdateSalaryRequest
+            EmployeeUpdateSalaryRequest employeeUpdateSalaryRequest = new EmployeeUpdateSalaryRequest
             {
                 EmployeeId = _employeeListView.EmployeeId,
                 Salary = _employeeListView.Salary
             };
 
-            _employeeService.UpdateEmployeeSalary(employeeUpdateRequest);
+            _employeeService.UpdateEmployeeSalary(employeeUpdateSalaryRequest);
         }
     }
 }
