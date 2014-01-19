@@ -34,7 +34,7 @@ namespace AOE.Service
             int employeeCountByJobId = _employeeRepository.GetEmployeeCountByJobId(employeeListRequest.JobId);
 
             employeeListResponse.Employees = employees.ConvertToEmployeeListViewModel();
-            employeeListResponse.EmployeeVirtualCount = employeeCountByJobId;
+            employeeListResponse.EmployeeCountByJobId = employeeCountByJobId;
 
             return employeeListResponse;
         }

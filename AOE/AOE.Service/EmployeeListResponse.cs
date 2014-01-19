@@ -8,6 +8,6 @@ namespace AOE.Service
     public class EmployeeListResponse
     {
         public List<EmployeeViewModel> Employees { get; set; }
-        public int EmployeeVirtualCount { get; set; }
+        public int EmployeeCountByJobId { get; set; }
     }
 }

@@ -34,7 +34,7 @@ namespace AOE.Presentation
                 PageIndex = _employeeListView.PageIndex
             };
             EmployeeListResponse employeeListResponse = _employeeService.GetEmployeeList(employeeListRequest);
-            _employeeListView.DisplayEmployeeList(employeeListResponse.Employees, employeeListResponse.EmployeeVirtualCount);
+            _employeeListView.DisplayEmployeeList(employeeListResponse.Employees, employeeListResponse.EmployeeCountByJobId);
         }
 
         public void UpdateEmployee()
