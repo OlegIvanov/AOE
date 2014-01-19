@@ -27,7 +27,7 @@ namespace AOE.WebUI
                 config = EmployeeListControlConfig.GetConfig(XmlConfigFile);
                 ViewState["EmployeeListConfig"] = config;
             }
-            _presenter = new EmployeeListPresenter(this, DependencyResolver.GetConfiguredContainer(config).GetInstance<EmployeeService>());
+            _presenter = new EmployeeListPresenter(this, EmployeeListControlDataSourceInjector.GetConfiguredContainer(config).GetInstance<EmployeeService>());
             ddlJobList.DataBound += ddlJobList_DataBound;
             ddlJobList.SelectedIndexChanged += ddlJobList_SelectedIndexChanged;
             gvEmployeeList.RowCommand += gvEmployeeList_RowCommand;

@@ -86,7 +86,7 @@
       <DependentUpon>EmployeeList.ascx</DependentUpon>
     </Compile>
     <Compile Include="EmployeeListControlConfig.cs" />
-    <Compile Include="DependencyResolver.cs" />
+    <Compile Include="EmployeeListControlDataSourceInjector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SortColumn.cs" />
     <Compile Include="SortOrder.cs" />

@@ -5,7 +5,7 @@ using System.Web.Configuration;
 
 namespace AOE.WebUI
 {
-    public static class DependencyResolver
+    public static class EmployeeListControlDataSourceInjector
     {
         public static IContainer GetConfiguredContainer(EmployeeListControlConfig config)
         {
