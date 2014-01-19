@@ -22,12 +22,8 @@ namespace AOE.WebUI
         public static EmployeeListControlConfig GetConfig(string xmlConfigFile) 
         {
             string absolutePath = HttpContext.Current.Server.MapPath(xmlConfigFile);
-            return DeserializeFromXml(absolutePath);
-        }
 
-        private static EmployeeListControlConfig DeserializeFromXml(string xmlConfigFile)
-        {
-            using (TextReader textReader = new StreamReader(xmlConfigFile))
+            using (TextReader textReader = new StreamReader(absolutePath))
             {
                 XmlSerializer deserializer = new XmlSerializer(typeof(EmployeeListControlConfig));
                 return (EmployeeListControlConfig)deserializer.Deserialize(textReader);
