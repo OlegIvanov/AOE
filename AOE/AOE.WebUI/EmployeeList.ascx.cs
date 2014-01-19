@@ -21,15 +21,18 @@ namespace AOE.WebUI
 
         protected void Page_Init(object sender, EventArgs e)
         {
-            EmployeeListControlConfig config = (EmployeeListControlConfig)ViewState["EmployeeListConfig"];
-            if (config == null)
+            EmployeeListControlConfig employeeListConfig = (EmployeeListControlConfig)ViewState["EmployeeListConfig"];
+            if (employeeListConfig == null)
             {
-                config = EmployeeListControlConfig.GetConfig(XmlConfigFile);
-                ViewState["EmployeeListConfig"] = config;
+                employeeListConfig = EmployeeListControlConfig.GetConfig(XmlConfigFile);
+                ViewState["EmployeeListConfig"] = employeeListConfig;
             }
-            _presenter = new EmployeeListPresenter(this, EmployeeListControlDataSourceInjector.GetConfiguredContainer(config).GetInstance<EmployeeService>());
+
+            _presenter = new EmployeeListPresenter(this, EmployeeListControlDataSourceInjector.GetConfiguredContainer(employeeListConfig).GetInstance<EmployeeService>());
+
             ddlJobList.DataBound += ddlJobList_DataBound;
             ddlJobList.SelectedIndexChanged += ddlJobList_SelectedIndexChanged;
+
             gvEmployeeList.RowCommand += gvEmployeeList_RowCommand;
             gvEmployeeList.PageIndexChanging += gvEmployeeList_PageIndexChanging;
             gvEmployeeList.RowEditing += gvEmployeeList_RowEditing;
@@ -41,11 +44,14 @@ namespace AOE.WebUI
         {
             if (!IsPostBack)
             {
-                EmployeeListControlConfig config = (EmployeeListControlConfig)ViewState["EmployeeListConfig"];
-                gvEmployeeList.PageSize = config.PageSize;
-                gvEmployeeList.Columns[2].Visible = config.IsEditable;
+                EmployeeListControlConfig employeeListConfig = (EmployeeListControlConfig)ViewState["EmployeeListConfig"];
+
+                gvEmployeeList.PageSize = employeeListConfig.PageSize;
+                gvEmployeeList.Columns[2].Visible = employeeListConfig.IsEditable;
+
                 ViewState["SortColumn"] = SortColumn.None;
                 ViewState["SortOrder"] = SortOrder.None;
+
                 _presenter.DisplayJobList();
             }
         }
@@ -59,6 +65,7 @@ namespace AOE.WebUI
         {
             gvEmployeeList.EditIndex = -1;
             gvEmployeeList.PageIndex = 0;
+
             _presenter.DisplayEmployeeList();
         }
 
@@ -69,6 +76,7 @@ namespace AOE.WebUI
                 SortColumn currentSortColumn = (SortColumn)ViewState["SortColumn"];
                 SortOrder currentSortOrder = (SortOrder)ViewState["SortOrder"];
                 SortColumn nextSortColumn = SortColumn.None;
+
                 switch (e.CommandName) 
                 {
                     case "SortByFullName":
@@ -98,8 +106,10 @@ namespace AOE.WebUI
                     ViewState["SortColumn"] = nextSortColumn;
                     ViewState["SortOrder"] = SortOrder.Ascending;
                 }
+
                 gvEmployeeList.EditIndex = -1;
                 gvEmployeeList.PageIndex = 0;
+
                 _presenter.DisplayEmployeeList();
             }
         }
@@ -108,25 +118,30 @@ namespace AOE.WebUI
         {
             gvEmployeeList.EditIndex = -1;
             gvEmployeeList.PageIndex = e.NewPageIndex;
+
             _presenter.DisplayEmployeeList();
         }
 
         protected void gvEmployeeList_RowEditing(object sender, GridViewEditEventArgs e)
         {
             gvEmployeeList.EditIndex = e.NewEditIndex;
+
             _presenter.DisplayEmployeeList();
         }
 
         protected void gvEmployeeList_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             gvEmployeeList.EditIndex = -1;
+
             _presenter.DisplayEmployeeList();
         }
 
         protected void gvEmployeeList_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             _presenter.UpdateEmployee();
+
             gvEmployeeList.EditIndex = -1;
+
             _presenter.DisplayEmployeeList();
         }
 
@@ -156,6 +171,7 @@ namespace AOE.WebUI
                 SortColumn sortColumn = (SortColumn)ViewState["SortColumn"];
                 SortOrder sortOrder = (SortOrder)ViewState["SortOrder"];
                 StringBuilder sortExpression = new StringBuilder();
+
                 switch (sortColumn)
                 {
                     case SortColumn.FullName:
