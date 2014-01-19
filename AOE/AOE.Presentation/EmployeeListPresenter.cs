@@ -10,9 +10,9 @@ namespace AOE.Presentation
     public class EmployeeListPresenter
     {
         private IEmployeeListView _employeeListView;
-        private Service.EmployeeService _employeeService;
+        private EmployeeService _employeeService;
 
-        public EmployeeListPresenter(IEmployeeListView employeeListView, Service.EmployeeService employeeService)
+        public EmployeeListPresenter(IEmployeeListView employeeListView, EmployeeService employeeService)
         {
             _employeeListView = employeeListView;
             _employeeService = employeeService;
@@ -21,29 +21,33 @@ namespace AOE.Presentation
         public void DisplayJobList()
         {
             JobListResponse jobListResponse = _employeeService.GetJobList();
+
             _employeeListView.DisplayJobList(jobListResponse.Jobs);
         }
 
         public void DisplayEmployeeList()
         {
-            EmployeeListRequest employeeListRequest = new EmployeeListRequest() 
+            EmployeeListRequest employeeListRequest = new EmployeeListRequest
             { 
                 JobId = _employeeListView.JobId,
                 SortExpression = _employeeListView.SortExpression,
                 PageSize = _employeeListView.PageSize,
                 PageIndex = _employeeListView.PageIndex
             };
+
             EmployeeListResponse employeeListResponse = _employeeService.GetEmployeeList(employeeListRequest);
+
             _employeeListView.DisplayEmployeeList(employeeListResponse.Employees, employeeListResponse.EmployeeCountByJobId);
         }
 
         public void UpdateEmployee()
         {
-            EmployeeUpdateRequest employeeUpdateRequest = new EmployeeUpdateRequest()
+            EmployeeUpdateRequest employeeUpdateRequest = new EmployeeUpdateRequest
             {
                 EmployeeId = _employeeListView.EmployeeId,
                 Salary = _employeeListView.Salary
             };
+
             _employeeService.UpdateEmployee(employeeUpdateRequest);
         }
     }
